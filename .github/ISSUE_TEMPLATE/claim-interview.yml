@@ -1,0 +1,73 @@
+name: "\U0001F3A4 Claim an Interview"
+description: "I have a trust glitch experience and want to be interviewed"
+title: "[Interview Request] "
+labels: ["interview-request", "unassigned"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Request a Glitch Scouter Interview
+        Tell us briefly about your experience. A certified Glitch Scouter will be assigned to interview you.
+
+  - type: textarea
+    id: brief_description
+    attributes:
+      label: Brief Description
+      description: "In 2-3 sentences, what happened? (Don't go into full detail — save that for the interview)"
+      placeholder: "I was using [AI system] to [task] and something unexpected happened with trust..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai_system_type
+    attributes:
+      label: What type of AI system was involved?
+      options:
+        - Chatbot
+        - Coding assistant
+        - Voice assistant
+        - Autonomous agent
+        - Image/video generator
+        - Recommendation system
+        - Search AI
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: trust_direction
+    attributes:
+      label: Did trust increase or decrease?
+      options:
+        - Trust decreased (negative glitch)
+        - Trust increased (positive glitch)
+        - Complex / both
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: availability
+    attributes:
+      label: Preferred interview format
+      options:
+        - Video call (Zoom/Meet)
+        - Audio call
+        - In-person (if local)
+        - No preference
+    validations:
+      required: true
+
+  - type: input
+    id: timezone
+    attributes:
+      label: Your timezone
+      placeholder: "e.g., UTC+8, EST, GMT"
+    validations:
+      required: true
+
+  - type: textarea
+    id: anything_else
+    attributes:
+      label: Anything else?
+      description: "Optional: any context that would help us match you with the right Scouter"

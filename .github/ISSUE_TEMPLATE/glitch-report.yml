@@ -1,0 +1,285 @@
+name: "\U0001F50A Glitch Report"
+description: "Submit a trust experience glitch from a completed interview"
+title: "[Glitch] "
+labels: ["glitch-report", "pending-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## TX Glitch Report
+        Submit a trust glitch documented through a Scouter interview.
+        This form generates a structured ethogram entry. The interviewer (Scouter) will review and confirm.
+
+  - type: input
+    id: participant_id
+    attributes:
+      label: Participant ID
+      description: "De-identified participant identifier"
+      placeholder: "P-001"
+    validations:
+      required: true
+
+  - type: input
+    id: scouter_id
+    attributes:
+      label: Scouter ID
+      description: "Your Glitch Scouter identifier"
+      placeholder: "GS-001"
+    validations:
+      required: true
+
+  - type: input
+    id: interview_date
+    attributes:
+      label: Interview Date
+      placeholder: "YYYY-MM-DD"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ai_system_type
+    attributes:
+      label: AI System Type
+      options:
+        - Chatbot (e.g., ChatGPT, Claude)
+        - Coding Copilot (e.g., GitHub Copilot, Cursor)
+        - Voice Assistant (e.g., Siri, Alexa)
+        - Autonomous Agent (e.g., AutoGPT, Devin)
+        - Image Generator (e.g., DALL-E, Midjourney)
+        - Recommendation System
+        - Search AI (e.g., Perplexity)
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: ai_system_name
+    attributes:
+      label: AI System Name
+      placeholder: "e.g., ChatGPT-4, Claude 3, Copilot"
+    validations:
+      required: true
+
+  - type: textarea
+    id: setting
+    attributes:
+      label: Setting & Task
+      description: "Where was the participant? What were they trying to do?"
+      placeholder: "Describe the context..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expectation
+    attributes:
+      label: Human Expectation
+      description: "What did the participant expect the AI to do?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: glitch_event
+    attributes:
+      label: The Glitch Event
+      description: "What actually happened? Describe the exact moment of trust shift."
+    validations:
+      required: true
+
+  - type: textarea
+    id: deviation
+    attributes:
+      label: Deviation
+      description: "How did reality diverge from expectation?"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: deviation_direction
+    attributes:
+      label: Deviation Direction
+      options:
+        - Negative surprise (trust decreased)
+        - Positive surprise (trust increased)
+        - Ambiguous
+    validations:
+      required: true
+
+  - type: dropdown
+    id: primary_emotion
+    attributes:
+      label: Primary Emotional Response
+      options:
+        - Surprise
+        - Betrayal
+        - Confusion
+        - Amusement
+        - Fear
+        - Awe
+        - Relief
+        - Disgust
+        - Frustration
+        - Curiosity
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: secondary_emotions
+    attributes:
+      label: Secondary Emotions
+      placeholder: "e.g., anxiety, fascination, anger"
+
+  - type: dropdown
+    id: emotional_intensity
+    attributes:
+      label: Emotional Intensity
+      options:
+        - Low
+        - Medium
+        - High
+    validations:
+      required: true
+
+  - type: input
+    id: trust_before
+    attributes:
+      label: Trust Before (1-10)
+      placeholder: "7"
+    validations:
+      required: true
+
+  - type: input
+    id: trust_after
+    attributes:
+      label: Trust After (1-10)
+      placeholder: "3"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: trust_trajectory
+    attributes:
+      label: Trust Trajectory
+      options:
+        - Rupture (sudden break)
+        - Erosion (gradual decline)
+        - Recalibration (adjusted expectations)
+        - Deepening (trust grew)
+        - Oscillation (went back and forth)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: recovery
+    attributes:
+      label: Recovery
+      options:
+        - Full recovery
+        - Partial recovery
+        - No recovery
+        - Exceeded baseline (more trust than before)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: behavioral_change
+    attributes:
+      label: Behavioral Change After Glitch
+      options:
+        - Continued same usage
+        - Continued with modified behavior
+        - Abandoned the system
+        - Switched to different system
+    validations:
+      required: true
+
+  - type: dropdown
+    id: glitch_type
+    attributes:
+      label: Glitch Type (preliminary)
+      description: "Best fit from current taxonomy. Can be revised during review."
+      options:
+        - "GH: Hallucination shock"
+        - "GU: Uncanny accuracy"
+        - "GB: Betrayal of expectation"
+        - "GE: Emotional boundary cross"
+        - "GP: Performance cliff"
+        - "GR: Refusal surprise"
+        - "GA: Agency assertion"
+        - "GC: Consistency break"
+        - "GS: Surprising competence"
+        - "GO: Opacity frustration"
+        - "Other (describe below)"
+    validations:
+      required: true
+
+  - type: input
+    id: participant_name_for_glitch
+    attributes:
+      label: Participant's Own Name for This Glitch
+      description: "What did the participant call this type of experience? (Q19 from protocol)"
+      placeholder: "Their exact words"
+
+  - type: textarea
+    id: ethological_analysis
+    attributes:
+      label: Ethological Analysis
+      description: |
+        Tinbergen's four questions adapted for AI:
+        - **Mechanism:** What architecture/training caused this?
+        - **Development:** How did this emerge over the interaction?
+        - **Function:** What purpose does this behavior serve?
+        - **Phylogeny:** What design lineage is this system from?
+      placeholder: |
+        Mechanism:
+        Development:
+        Function:
+        Phylogeny:
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stakes_domain
+    attributes:
+      label: Stakes Domain
+      options:
+        - Convenience
+        - Financial
+        - Health
+        - Reputation
+        - Emotional
+        - Safety
+        - Academic/Professional
+        - Creative
+    validations:
+      required: true
+
+  - type: dropdown
+    id: stakes_severity
+    attributes:
+      label: Stakes Severity
+      options:
+        - Trivial
+        - Moderate
+        - Significant
+        - Critical
+    validations:
+      required: true
+
+  - type: textarea
+    id: notable_quotes
+    attributes:
+      label: Notable Quotes
+      description: "Direct quotes from the participant (de-identified)"
+
+  - type: textarea
+    id: interviewer_observations
+    attributes:
+      label: Interviewer Observations
+      description: "Body language, hesitations, contradictions, enthusiasm"
+
+  - type: textarea
+    id: additional_notes
+    attributes:
+      label: Additional Notes
+      description: "Anything else relevant"

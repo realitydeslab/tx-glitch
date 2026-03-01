@@ -1,0 +1,69 @@
+name: "\U0001F50D Apply as Glitch Scouter"
+description: "Apply to become a certified interviewer"
+title: "[Scouter Application] "
+labels: ["scouter-application"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Glitch Scouter Application
+        Apply to become a certified TX Glitch interviewer.
+
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+
+  - type: input
+    id: affiliation
+    attributes:
+      label: University / Affiliation
+    validations:
+      required: true
+
+  - type: dropdown
+    id: level
+    attributes:
+      label: Academic Level
+      options:
+        - Undergraduate
+        - Master's student
+        - PhD student
+        - Postdoc
+        - Faculty
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: background
+    attributes:
+      label: Relevant Background
+      description: "Any experience with qualitative research, interviews, HCI, AI ethics, ethnography?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why do you want to be a Glitch Scouter?
+    validations:
+      required: true
+
+  - type: input
+    id: availability
+    attributes:
+      label: How many interviews can you commit to per month?
+      placeholder: "e.g., 3-5"
+    validations:
+      required: true
+
+  - type: input
+    id: timezone
+    attributes:
+      label: Timezone
+      placeholder: "e.g., UTC+0, EST"
+    validations:
+      required: true

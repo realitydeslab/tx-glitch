@@ -8,13 +8,13 @@ body:
       value: |
         ## TX Glitch Report
         Submit a trust glitch documented through a Scouter interview.
-        This form generates a structured ethogram entry. The interviewer (Scouter) will review and confirm.
+        All fields map directly to the TX Glitch ethogram schema.
 
+  # === Metadata ===
   - type: input
     id: participant_id
     attributes:
       label: Participant ID
-      description: "De-identified participant identifier"
       placeholder: "P-001"
     validations:
       required: true
@@ -23,7 +23,6 @@ body:
     id: scouter_id
     attributes:
       label: Scouter ID
-      description: "Your Glitch Scouter identifier"
       placeholder: "GS-001"
     validations:
       required: true
@@ -36,78 +35,113 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: ai_system_type
+  # === System ===
+  - type: input
+    id: system_name
     attributes:
-      label: AI System Type
+      label: "System: Name"
+      placeholder: "e.g., ChatGPT-4o, Claude 3.5, GitHub Copilot"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: system_type
+    attributes:
+      label: "System: Type"
       options:
-        - Chatbot (e.g., ChatGPT, Claude)
-        - Coding Copilot (e.g., GitHub Copilot, Cursor)
-        - Voice Assistant (e.g., Siri, Alexa)
-        - Autonomous Agent (e.g., AutoGPT, Devin)
-        - Image Generator (e.g., DALL-E, Midjourney)
-        - Recommendation System
-        - Search AI (e.g., Perplexity)
+        - Chatbot
+        - Coding copilot
+        - Voice assistant
+        - Autonomous agent
+        - Image/video generator
+        - Recommendation system
+        - Search AI
+        - Embodied robot
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: system_platform
+    attributes:
+      label: "System: Platform"
+      options:
+        - Web
+        - Mobile app
+        - Desktop app
+        - IDE/editor
+        - Embedded/IoT
+        - API
         - Other
     validations:
       required: true
 
   - type: input
-    id: ai_system_name
+    id: system_version
     attributes:
-      label: AI System Name
-      placeholder: "e.g., ChatGPT-4, Claude 3, Copilot"
+      label: "System: Version (if known)"
+      placeholder: "e.g., GPT-4o, Claude 3.5 Sonnet, v2.1"
+
+  # === Event ===
+  - type: textarea
+    id: event_setting
+    attributes:
+      label: "Event: Setting"
+      description: "Where were they? What was the context?"
+      placeholder: "At home, working on a report, late evening..."
     validations:
       required: true
 
   - type: textarea
-    id: setting
+    id: event_task
     attributes:
-      label: Setting & Task
-      description: "Where was the participant? What were they trying to do?"
-      placeholder: "Describe the context..."
+      label: "Event: Task"
+      description: "What was the human trying to do?"
+      placeholder: "Writing an email to their supervisor about..."
     validations:
       required: true
 
   - type: textarea
-    id: expectation
+    id: event_ai_behavior
     attributes:
-      label: Human Expectation
+      label: "Event: AI Behavior (observable)"
+      description: "What did the AI actually do? Describe the observable action."
+      placeholder: "The AI responded with..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: event_human_expectation
+    attributes:
+      label: "Event: Human Expectation"
       description: "What did the participant expect the AI to do?"
     validations:
       required: true
 
   - type: textarea
-    id: glitch_event
+    id: event_deviation
     attributes:
-      label: The Glitch Event
-      description: "What actually happened? Describe the exact moment of trust shift."
-    validations:
-      required: true
-
-  - type: textarea
-    id: deviation
-    attributes:
-      label: Deviation
+      label: "Event: Deviation"
       description: "How did reality diverge from expectation?"
     validations:
       required: true
 
   - type: dropdown
-    id: deviation_direction
+    id: event_deviation_direction
     attributes:
-      label: Deviation Direction
+      label: "Event: Deviation Direction"
       options:
-        - Negative surprise (trust decreased)
         - Positive surprise (trust increased)
+        - Negative surprise (trust decreased)
         - Ambiguous
     validations:
       required: true
 
+  # === Affect ===
   - type: dropdown
-    id: primary_emotion
+    id: affect_primary_emotion
     attributes:
-      label: Primary Emotional Response
+      label: "Affect: Primary Emotion"
       options:
         - Surprise
         - Betrayal
@@ -124,15 +158,15 @@ body:
       required: true
 
   - type: input
-    id: secondary_emotions
+    id: affect_secondary_emotions
     attributes:
-      label: Secondary Emotions
+      label: "Affect: Secondary Emotions"
       placeholder: "e.g., anxiety, fascination, anger"
 
   - type: dropdown
-    id: emotional_intensity
+    id: affect_intensity
     attributes:
-      label: Emotional Intensity
+      label: "Affect: Intensity"
       options:
         - Low
         - Medium
@@ -140,10 +174,24 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: affect_duration
+    attributes:
+      label: "Affect: Duration"
+      options:
+        - Momentary (seconds)
+        - Minutes
+        - Hours
+        - Days
+        - Ongoing
+    validations:
+      required: true
+
+  # === Trust ===
   - type: input
     id: trust_before
     attributes:
-      label: Trust Before (1-10)
+      label: "Trust: Before (1-10)"
       placeholder: "7"
     validations:
       required: true
@@ -151,7 +199,7 @@ body:
   - type: input
     id: trust_after
     attributes:
-      label: Trust After (1-10)
+      label: "Trust: After (1-10)"
       placeholder: "3"
     validations:
       required: true
@@ -159,20 +207,20 @@ body:
   - type: dropdown
     id: trust_trajectory
     attributes:
-      label: Trust Trajectory
+      label: "Trust: Trajectory"
       options:
         - Rupture (sudden break)
         - Erosion (gradual decline)
         - Recalibration (adjusted expectations)
         - Deepening (trust grew)
-        - Oscillation (went back and forth)
+        - Oscillation (back and forth)
     validations:
       required: true
 
   - type: dropdown
-    id: recovery
+    id: trust_recovery
     attributes:
-      label: Recovery
+      label: "Trust: Recovery"
       options:
         - Full recovery
         - Partial recovery
@@ -182,9 +230,9 @@ body:
       required: true
 
   - type: dropdown
-    id: behavioral_change
+    id: trust_behavioral_change
     attributes:
-      label: Behavioral Change After Glitch
+      label: "Trust: Behavioral Change After Glitch"
       options:
         - Continued same usage
         - Continued with modified behavior
@@ -193,10 +241,44 @@ body:
     validations:
       required: true
 
-  - type: dropdown
-    id: glitch_type
+  # === Ethology (Tinbergen's Four Questions) ===
+  - type: textarea
+    id: ethology_mechanism
     attributes:
-      label: Glitch Type (preliminary)
+      label: "Ethology: Mechanism"
+      description: "What architecture, training, or design caused this behavior?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ethology_development
+    attributes:
+      label: "Ethology: Development"
+      description: "How did this behavior emerge over the interaction history?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ethology_function
+    attributes:
+      label: "Ethology: Function"
+      description: "What purpose does this behavior serve (if any)?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: ethology_phylogeny
+    attributes:
+      label: "Ethology: Phylogeny"
+      description: "What design lineage is this system from? What predecessors shaped this behavior?"
+    validations:
+      required: true
+
+  # === Classification ===
+  - type: dropdown
+    id: classification_glitch_type
+    attributes:
+      label: "Classification: Glitch Type"
       description: "Best fit from current taxonomy. Can be revised during review."
       options:
         - "GH: Hallucination shock"
@@ -209,39 +291,41 @@ body:
         - "GC: Consistency break"
         - "GS: Surprising competence"
         - "GO: Opacity frustration"
-        - "Other (describe below)"
+        - "Other (describe in notes)"
     validations:
       required: true
 
   - type: input
-    id: participant_name_for_glitch
+    id: classification_participant_name
     attributes:
-      label: Participant's Own Name for This Glitch
-      description: "What did the participant call this type of experience? (Q19 from protocol)"
-      placeholder: "Their exact words"
+      label: "Classification: Participant's Own Name for This Glitch"
+      description: "What did the participant call this type of experience? (exact words from Q19)"
+      placeholder: "Their exact phrase"
 
   - type: textarea
-    id: ethological_analysis
+    id: classification_causal_model
     attributes:
-      label: Ethological Analysis
-      description: |
-        Tinbergen's four questions adapted for AI:
-        - **Mechanism:** What architecture/training caused this?
-        - **Development:** How did this emerge over the interaction?
-        - **Function:** What purpose does this behavior serve?
-        - **Phylogeny:** What design lineage is this system from?
-      placeholder: |
-        Mechanism:
-        Development:
-        Function:
-        Phylogeny:
+      label: "Classification: Participant's Causal Model"
+      description: "What does the participant think caused it? (from Q17)"
+
+  - type: dropdown
+    id: classification_attribution
+    attributes:
+      label: "Classification: Attribution"
+      description: "Does the participant think the AI 'meant' to do it?"
+      options:
+        - Intentional
+        - Accidental
+        - Mechanical (just how it works)
+        - Unknowable
     validations:
       required: true
 
+  # === Stakes ===
   - type: dropdown
     id: stakes_domain
     attributes:
-      label: Stakes Domain
+      label: "Stakes: Domain"
       options:
         - Convenience
         - Financial
@@ -257,7 +341,7 @@ body:
   - type: dropdown
     id: stakes_severity
     attributes:
-      label: Stakes Severity
+      label: "Stakes: Severity"
       options:
         - Trivial
         - Moderate
@@ -266,6 +350,18 @@ body:
     validations:
       required: true
 
+  - type: dropdown
+    id: stakes_reversible
+    attributes:
+      label: "Stakes: Was the consequence reversible?"
+      options:
+        - "Yes"
+        - "No"
+        - Partially
+    validations:
+      required: true
+
+  # === Evidence & Notes ===
   - type: textarea
     id: notable_quotes
     attributes:
@@ -276,10 +372,9 @@ body:
     id: interviewer_observations
     attributes:
       label: Interviewer Observations
-      description: "Body language, hesitations, contradictions, enthusiasm"
+      description: "Body language, hesitations, contradictions, enthusiasm — your second-person layer"
 
   - type: textarea
     id: additional_notes
     attributes:
       label: Additional Notes
-      description: "Anything else relevant"

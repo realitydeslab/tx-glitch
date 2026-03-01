@@ -1,6 +1,8 @@
-# TX Glitch — Trust Experience Glitch Database
+# [Trust.Fail](https://trust.fail) — Trust Experience Glitch Database
 
 A systematic, open research project to document, classify, and analyze **trust glitches** in human-AI interaction — moments where trust unexpectedly breaks, bends, or grows.
+
+🌐 **[trust.fail](https://trust.fail)**
 
 ## What is a Trust Glitch?
 
@@ -46,10 +48,14 @@ Glitch Scouters are certified student interviewers — the human quality layer. 
 
 **Why interviews, not self-reports?** Self-reporting is prone to its own glitches. The interview method provides verification through trained interviewer probing, recorded evidence, and a second-person observational layer. Think [NASA ASRS](https://asrs.arc.nasa.gov/) for human-AI trust.
 
+## Broad Listening
+
+This project uses **broad listening** principles: technology-assisted deliberation to surface patterns, contradictions, and emergent categories across many individual glitch reports. GitHub issues + automated ethogram generation enables structured data collection at scale while preserving narrative richness.
+
 ## Project Structure
 
 ```
-tx-glitch/
+trust.fail/
 ├── protocol/               # Interview protocol, consent forms, ethogram coding scheme
 ├── scouters/               # Certification guide & training materials
 ├── data/coded/             # Verified ethogram entries (YAML)
@@ -57,13 +63,20 @@ tx-glitch/
 └── analysis/               # Scripts and visualizations
 ```
 
-## Broad Listening
-
-This project uses **broad listening** principles: technology-assisted deliberation to surface patterns, contradictions, and emergent categories across many individual glitch reports. The GitHub issue system + automated ethogram generation enables structured data collection at scale while preserving narrative richness.
-
 ## License
 
 CC BY 4.0 for research materials, MIT for code.
+
+## Citation
+
+```bibtex
+@misc{trustfail2026,
+  title={Trust.Fail: A Trust Experience Glitch Database for Human-AI Interaction},
+  author={Hu, Botao Amber and {Reality Design Lab}},
+  year={2026},
+  url={https://trust.fail}
+}
+```
 
 ## Team
 

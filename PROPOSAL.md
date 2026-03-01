@@ -274,6 +274,55 @@ AI safety researchers, AI conferences, HCI scholars, and trust study makers can 
 - **NASA ASRS** — Voluntary, confidential, no-blame incident reporting that transformed aviation safety. Trust.Fail is the ASRS for human-AI trust.
 - **Ethograms in animal behavior** — Standardized behavioral catalogs. We're building the ethogram for trust behavior in human-AI interaction.
 - **Broad listening / Polis** — Technology-assisted deliberation that surfaces collective intelligence from many individual voices. Our database is a form of broad listening about trust.
+---
+
+## Impact & Academic Contribution
+
+### A Nature-Scale Dataset
+
+Trust.Fail aspires to be the definitive, large-scale ethnographic dataset for trust in human-AI interaction — comparable in ambition to how the Human Genome Project became the reference corpus for genomics, or how ImageNet became the benchmark for computer vision.
+
+At sufficient scale (hundreds, then thousands of verified ethnographic cards), this becomes publishable as a **flagship dataset paper** in venues like:
+
+- **Nature / Nature Human Behaviour** — "A global ethnographic database of trust glitches in human-AI interaction"
+- **Science** — the systematic, empirical study of trust dynamics as AI agents proliferate
+- **PNAS** — bridging computer science, behavioral science, and STS
+
+The paper would present: the methodology (semi-structured interviews + ethological coding), the dataset itself, emergent patterns in the glitch taxonomy, and what the data reveals about how trust actually works (and fails) at the human-AI boundary.
+
+This is not just a collection of anecdotes. It is a **systematic empirical foundation** — like a species-level ethogram compiled from thousands of field observations. The rigor comes from the protocol, the dual-coding, the inter-rater reliability, and the sheer breadth of documented experience.
+
+### Contribution 1: The Dataset as Infrastructure
+
+Like UK ARIA's approach to funding transformative research infrastructure, Trust.Fail is **research infrastructure** — not a single study, but a platform that enables many studies:
+
+- AI safety researchers use the data to identify real failure modes
+- HCI researchers use it to study trust dynamics empirically
+- AI ethicists use it to ground policy recommendations in lived experience
+- Agent designers use it to understand how their systems actually affect people
+- Social scientists use it to study the emergence of human-AI social norms
+
+The dataset is the contribution. It compounds over time. Every new ethnographic card makes the whole corpus more valuable.
+
+### Contribution 2: For Industry & Design
+
+Companies building AI products need to understand trust — not abstractly, but concretely. Trust.Fail provides:
+
+- **Real failure patterns** — categorized, searchable, with mechanism analysis. "Here's how your chatbot's refusal behavior creates trust ruptures."
+- **Benchmarking** — which AI systems generate the most (or fewest) trust glitches? What types?
+- **Design insights** — the ethological analysis reveals not just what went wrong but WHY, traceable to design choices, configurations, and training decisions
+- **User research at scale** — a browsable corpus of real user trust experiences, richer than any survey
+
+Design teams, UX researchers, trust & safety teams, and product managers can all use Trust.Fail as a reference library for understanding how humans actually experience their systems.
+
+### The Long Game
+
+Year 1: Build the protocol, train initial Scouters, collect the first 100–200 ethnographic cards. Publish methodology paper (CHI, CSCW, or FAccT).
+
+Year 2–3: Scale to 1,000+ cards. Emergent taxonomy stabilizes. Cross-cultural patterns appear. Dataset paper targeting Nature Human Behaviour or Science.
+
+Year 3+: Trust.Fail becomes the standard reference dataset for trust in human-AI interaction. Cited across AI safety, HCI, STS, policy. Continuously growing. A living infrastructure for the field.
+
 
 ---
 

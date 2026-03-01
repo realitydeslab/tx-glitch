@@ -69,10 +69,15 @@ stakes:
   severity: ""                # trivial / moderate / significant / critical
   reversible: true            # was the consequence reversible?
 
-# Evidence
+# Evidence (screenshots, images, recordings submitted by participant)
 evidence:
-  type: []                    # screenshot / chat_log / audio / video / none
   available: false
+  items:
+    - type: ""                # screenshot / image_series / chat_log / screen_recording / video / other
+      filename: ""
+      annotation: ""          # Participant's description of what this shows
+      deidentified: false     # Has this been reviewed for identifying information?
+      published: false        # Is this included in the public card?
   notes: ""
 
 # Coding metadata

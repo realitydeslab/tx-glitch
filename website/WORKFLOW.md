@@ -121,6 +121,25 @@ The agent:
 - Asks for trust scores (1-10 before/after)
 - Asks the reporter to name the glitch type in their own words
 
+### Step 3.5: Evidence Upload
+
+During or after the interview, the reporter can upload evidence:
+
+- **Screenshots** — of the AI's output, the interface, error messages
+- **Image series** — multiple screenshots showing the glitch unfolding step by step
+- **Chat logs** — exported conversation history
+- **Screen recordings** — video of the interaction
+
+The upload interface:
+- Drag-and-drop or file picker
+- Supports: PNG, JPG, GIF, PDF, TXT, MP4, WEBM
+- Multiple files allowed (up to 10)
+- Reporter can annotate each image: "This is where it said X" / "This is what I expected"
+- Images are stored securely and linked to the ethnographic card
+- **De-identification reminder:** "Please blur or crop any personal information visible in your screenshots before uploading. We will review for identifying information before publication."
+
+Evidence appears in the ethnographic card under a dedicated section and can be included (with consent) in the published card.
+
 ### Step 4: Transcript → Ethnographic card
 
 Interview ends. The system:
@@ -241,6 +260,17 @@ The Scouter follows the 5-section protocol:
 The interview is recorded (audio/video/text log) for the record.
 
 The Scouter also takes **interviewer observations**: body language, hesitations, contradictions, emotional intensity — the second-person layer that AI interviews can't capture.
+
+### Step 6.5: Evidence collection
+
+During the interview, the Scouter asks:
+> "Do you have any screenshots, images, or recordings from this experience? These help us document the glitch more accurately."
+
+If the reporter has evidence:
+- For video/text interviews: reporter shares files during or after the call
+- For in-person: reporter can AirDrop, email, or upload later via a link
+- Scouter uploads evidence alongside the transcript on their dashboard
+- Each piece of evidence is annotated with context from the interview
 
 ### Step 7: Scouter uploads transcript
 
@@ -383,6 +413,7 @@ Classification:  glitch_type, type_name, participant_name, attribution
 Stakes:          domain, severity, reversible
 Quotes:          [de-identified notable quotes]
 Observations:    interviewer observations (human interviews only)
+Evidence:        [list of attached files with annotations]
 Not Discussed:   [list of fields not covered]
 ```
 

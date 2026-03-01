@@ -1,147 +1,152 @@
-# TX Glitch — Semi-Structured Interview Protocol
+# Trust.Fail — Semi-Structured Interview Protocol
 
-**Version:** 1.0
+**Version:** 1.1
 **Date:** 2026-03-01
 
-## Overview
+## Philosophy
 
-This protocol guides Glitch Scouters through a semi-structured interview designed to elicit detailed, verifiable accounts of trust glitches in human-AI interaction. Each interview takes approximately 45–60 minutes.
+The interview itself must be a **trustworthy experience**. The participant is sharing a vulnerable moment — when their trust broke or shifted. The Scouter's job is to create a safe, human space where that story can be told honestly.
+
+The participant chooses their medium: **text chat or voice conversation** — whatever feels most natural to them.
+
+## Recording Policy
+
+The interview is **recorded** (audio, video, or text log depending on medium). This recording exists **solely as a verifiable record** — proof that what was said was said. It is:
+
+- ✅ For accuracy verification
+- ✅ For audit trail and research integrity
+- ❌ **NOT for analysis** — we do not analyze recordings directly
+
+The analysis happens through the **ethnographic card** — a structured summary generated after the interview, which the Scouter reviews and confirms.
+
+## The Pipeline
+
+```
+Participant tells their story (text or voice)
+        ↓
+Recording captures the raw exchange (for the record)
+        ↓
+System generates an ethnographic card (structured summary)
+        ↓
+Scouter reviews & confirms the card (human verification)
+        ↓
+Confirmed card enters the database as a GitHub issue → PR
+```
 
 ## Materials Needed
 
 - Signed consent form (see `consent-form.md`)
-- Audio/video recording device
-- This protocol (printed or on screen)
-- Interviewer notes template (end of this document)
+- Recording setup (audio/video for voice; chat logs for text)
+- This protocol
 - Ethogram coding sheet (see `ethogram.md`)
 
 ---
 
-## Part 0: Preamble (5 min)
+## Part 0: Setting the Space (5 min)
 
-*Read to participant before recording begins:*
+**Goal:** Make the participant feel safe and in control.
 
-> We're studying moments where trust between humans and AI agents shifts unexpectedly — we call these "trust glitches." We're interested in your real experiences, not hypotheticals. There are no right or wrong answers. We'll record this interview with your consent. Your data will be de-identified. You can stop at any time or skip any question.
+*Adapt to medium — voice or text:*
 
-- [ ] Obtain signed consent form
-- [ ] Confirm recording permission
+> "Thanks for being here. We're studying moments where trust between people and AI shifts unexpectedly — we call these 'trust glitches.' I'm interested in your real experience, not hypotheticals. There are no right or wrong answers. You can stop anytime, skip anything, and choose how much detail to share. Everything will be de-identified."
+
+- [ ] Obtain consent (signed form or recorded verbal consent)
+- [ ] Confirm recording permission — explain: "The recording is just for the record, to make sure the summary is accurate. It won't be analyzed directly."
+- [ ] Let participant choose: voice or text
 - [ ] Start recording
-- [ ] State: participant ID, date, interviewer name
 
 ---
 
 ## Part 1: Background & AI Relationship (5–10 min)
 
-**Goal:** Establish baseline trust posture and AI literacy.
+**Goal:** Establish baseline trust posture. Keep it conversational.
 
-1. **What AI tools or agents do you use regularly?**
-   - *Probe: chatbots, copilots, voice assistants, autonomous agents, recommendation systems*
-2. **How would you describe your general attitude toward AI?**
-   - *Probe: trusting, skeptical, pragmatic, curious, fearful?*
-3. **How long have you been using AI tools in your daily life or work?**
-4. **Do you think of any AI system as something you have a "relationship" with?** Why or why not?
+1. **What AI tools do you use in your daily life?**
+2. **How would you describe your relationship with AI?** *(trusting, skeptical, pragmatic, complicated?)*
+3. **How long have you been living with AI tools?**
+4. **Do you feel like you have a "relationship" with any AI system?** Why or why not?
 
 ---
 
-## Part 2: The Glitch Event — Elicitation (15–20 min)
+## Part 2: The Glitch — Let Them Tell the Story (15–20 min)
 
-**Goal:** Get a thick description of the glitch event with temporal, emotional, and behavioral detail.
+**Goal:** Thick description. Let the story breathe.
 
 **Core prompt:**
 
-> *"Tell me about a specific moment when your trust in an AI system shifted — either broke, was shaken, or surprisingly grew. Walk me through what happened, step by step, like you're replaying the scene."*
+> *"Tell me about a moment when your trust in an AI shifted — broke, was shaken, or surprisingly grew. Walk me through it like you're replaying the scene."*
 
-**Structured follow-ups** (use if they don't emerge naturally):
+**Follow naturally. Probe only what doesn't emerge on its own:**
 
-5. **Setting:** Where were you? What were you doing? What was the task?
-6. **Expectation:** What did you expect the AI to do in that moment?
-7. **The glitch:** What actually happened? What was the exact moment things felt "off" (or unexpectedly right)?
-8. **First reaction:** What did you feel in that instant?
-   - *Probe: surprise, betrayal, confusion, amusement, relief, fear, awe?*
-9. **Interpretation:** What did you think was happening? Did you try to explain the AI's behavior to yourself?
-10. **Action:** What did you do next?
-    - *Probe: retry, abandon, test it, confront it, ignore it, work around it, report it?*
+5. **Where were you? What were you doing?**
+6. **What did you expect the AI to do?**
+7. **What actually happened? What was the exact moment?**
+8. **What did you feel?** *(surprise, betrayal, confusion, amusement, fear, awe?)*
+9. **How did you explain it to yourself?**
+10. **What did you do next?** *(retry, abandon, test, confront, ignore?)*
 
-**Deep probes** (use as needed):
-
-- *"Can you remember the exact words or output?"*
-- *"Was anyone else there? What did they think?"*
-- *"Had anything like this happened before with this system?"*
-- *"How long did the feeling last?"*
-- *"Did you screenshot or save anything?"*
+**Deep probes (if needed):**
+- *"Can you remember the exact words?"*
+- *"Was anyone else there?"*
+- *"Had this happened before?"*
+- *"Did you save anything — a screenshot, a log?"*
 
 ---
 
 ## Part 3: Trust Trajectory (10 min)
 
-**Goal:** Map the trust trajectory — rupture, repair, recalibration, or reinforcement.
-
-11. **Before vs. after:** How would you rate your trust in that system before the event (1–10)? After?
-12. **Recovery:** Did you keep using the system? If yes, did your usage pattern change?
-13. **Generalization:** Did this experience change how you feel about AI systems in general, or just that one?
-14. **Narration:** Have you told anyone else this story? How do they usually react?
-15. **Accumulation:** Has your trust shifted gradually over many small moments, or in a few big jumps?
+11. **Trust before (1–10)? Trust after (1–10)?**
+12. **Did you keep using the system? Did anything change?**
+13. **Did this change how you feel about AI in general, or just this one?**
+14. **Have you told anyone this story?** How do they react?
+15. **Has your trust shifted gradually or in big jumps?**
 
 ---
 
 ## Part 4: Ethological Reflection (10 min)
 
-**Goal:** Bridge from phenomenology to ethology — get the participant's own causal model and classification.
-
 *Transition: "Now I'd like you to step back and think about this more analytically."*
 
-16. **Attribution:** Do you think the AI "meant" to do what it did? Does that question even make sense to you?
-17. **Mechanism:** What do you think caused the glitch?
-    - *Probe: training data, design choice, bug, emergent behavior, misuse?*
-18. **Pattern:** Do you think this is something that happens to other people too, or was it specific to your situation?
-19. **Category:** If you had to name the *type* of glitch, what would you call it?
-    - *Let them create their own taxonomy — record the exact phrase*
-20. **Stakes:** What was at stake when the glitch happened?
-    - *Probe: convenience, money, health, reputation, emotional wellbeing, safety?*
+16. **Do you think the AI "meant" to do what it did?** Does that question make sense?
+17. **What do you think caused it?** *(training, design, bug, emergence?)*
+18. **Do you think this happens to other people too?**
+19. **If you had to name this type of glitch, what would you call it?** *(record exact words)*
+20. **What was at stake?** *(convenience, money, health, reputation, emotions, safety?)*
 
 ---
 
-## Part 5: Closing & Additional Glitches (5 min)
+## Part 5: Closing (5 min)
 
-21. **Is there another glitch moment you'd like to share?**
-    - *If yes, repeat Parts 2–4 in abbreviated form*
-22. **Anything we didn't ask that you think we should know?**
-23. **Would you be willing to share screenshots, logs, or chat transcripts from any of these events?**
-24. **Can we follow up with you in the future if we have clarifying questions?**
+21. **Any other glitch moments you'd like to share?**
+22. **Anything we didn't ask that matters?**
+23. **Would you share screenshots or logs from this experience?**
+24. **Can we follow up if we have questions?**
 
 - [ ] Stop recording
 - [ ] Thank participant
+- [ ] Explain next step: "We'll generate a summary card from this conversation. You'll get to review it before anything goes public."
 
 ---
 
-## Interviewer Notes Template
+## After the Interview
 
-*Fill out immediately after each interview:*
+### The Scouter's job:
 
-| Field | Notes |
-|---|---|
-| **Participant ID** | |
-| **Date** | |
-| **Duration** | |
-| **Interviewer** | |
-| **AI systems discussed** | |
-| **Number of glitch events** | |
-| **Dominant glitch type(s)** | |
-| **Trust trajectory pattern** | rupture / erosion / recalibration / deepening / other |
-| **Emotional intensity** | low / medium / high |
-| **Evidence provided?** | screenshots / logs / transcripts / none |
-| **Notable quotes** | |
-| **Interviewer observations** | body language, hesitations, contradictions, enthusiasm |
-| **Ethogram codes** | (assign after coding) |
-| **Follow-up needed?** | yes / no — reason: |
+1. **System generates an ethnographic card** — a structured summary of the glitch event(s) using the ethogram schema
+2. **Scouter reviews the card** — checks accuracy against their memory and the recording (if needed)
+3. **Scouter confirms** — submits the verified card as a Glitch Report on GitHub
+4. **Participant optionally reviews** — if they opted in, they see the card before it's published
+
+The recording is archived securely. It is **never published** and is only consulted if there's a factual dispute about the card.
 
 ---
 
-## Tips for Interviewers
+## Tips for Scouters
 
-- **Listen more than you talk.** Your job is to elicit, not to lead.
-- **Follow the story.** If they go somewhere interesting, follow them — you can always come back to the protocol.
-- **Don't judge.** Some people will describe loving an AI. Some will describe hating one. Both are data.
-- **Probe for specifics.** "Tell me more" and "What exactly did it say?" are your best tools.
-- **Note contradictions.** If they say they "didn't care" but their body language says otherwise, record both.
-- **Silence is okay.** Let them think. Don't rush to fill pauses.
+- **This is a conversation, not an interrogation.** Match their energy.
+- **Text interviews are valid.** Some people are more honest in writing. Let them choose.
+- **Listen more than you talk.**
+- **Follow the story** — you can always come back to the protocol.
+- **Don't judge.** Loving an AI and hating an AI are both data.
+- **Silence is okay.** Let them think.
+- **The recording is a safety net, not a spotlight.** Make sure they know that.

@@ -28,7 +28,7 @@ Self-reporting is prone to its own glitches — people fabricate, embellish, mis
 
 3. **Recording is for the record, not for analysis.** The interview is recorded (audio, video, or text log) solely as a verifiable record — proof that what was said was said. Analysis happens through the **ethnographic card**, a structured summary generated after the interview.
 
-4. **Human confirmation in the loop.** The system auto-generates an ethnographic card from the interview. The interviewer (Scouter) reviews and confirms it. No data enters the database without human verification.
+4. **Human confirmation in the loop.** The system auto-generates an ethnographic card from the interview. The interviewer reviews and confirms it. No data enters the database without human verification.
 
 5. **Dual analytical lens.** Each glitch is analyzed through two perspectives:
    - **First-person ethnography** — the lived experience of the human who got glitched. Feelings, reactions, trust trajectory. This is phenomenology.
@@ -127,13 +127,93 @@ The certification process itself builds trust. A trained, certified human interv
 
 ---
 
+## How Data Enters the System
+
+There are **four pathways** for data to enter Trust.Fail, each with different levels of depth and verification:
+
+### Path 1: The Job Board — "I got glitched"
+
+The lowest-friction entry point. Anyone can **rough-report a glitch moment** on the website:
+
+- Brief description: what happened, which AI, how trust shifted
+- Contact info (optional, for follow-up)
+- This is **not yet data** — it's a lead, a signal, a story waiting to be told properly
+
+These rough reports appear on a **job board** visible to Scouters and researchers.
+
+### Path 2: Scouter-Initiated Interview
+
+An ethnographic researcher (Scouter) **browses the job board**, finds an interesting report, and **contacts the person** to schedule a proper interview:
+
+- Scouter reaches out, schedules a time
+- Conducts the full semi-structured interview (text or voice)
+- Records the session (for the record)
+- System auto-generates an ethnographic card
+- Scouter reviews and confirms the card
+- Confirmed card enters the database
+
+This is the **gold standard path** — human interviewer, full protocol, maximum depth and verification.
+
+### Path 3: AI-Conducted Interview — "Interview me now"
+
+For people who want to report immediately without waiting for a Scouter:
+
+- User clicks "Report a Glitch" on the website
+- An **AI interviewer agent** conducts the semi-structured interview in real-time
+- Participant can use **text or speech** (speech is auto-transcribed)
+- The agent follows the same 5-section protocol
+- Conversation is recorded for the record
+- System auto-generates an ethnographic card
+- **Participant reviews and confirms** the card on the spot
+- A Scouter later reviews the confirmed card as a second verification layer
+
+This scales the interview process while maintaining the semi-structured protocol. The AI agent ensures every interview covers the same ground. The Scouter remains in the loop as the final human verification.
+
+### Path 4: Scouter Direct Upload
+
+For Scouters who conduct interviews **outside the platform** (e.g., in-person, at conferences, in the field):
+
+- Scouter conducts the interview using the protocol
+- Uploads the ethnographic card directly to the system
+- Another Scouter or researcher reviews and confirms (peer review)
+
+### Summary of Pathways
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                    trust.fail                            │
+│                                                         │
+│  PATH 1: Job Board                                      │
+│  "I got glitched" → rough report → visible to Scouters  │
+│         │                                               │
+│         ▼                                               │
+│  PATH 2: Scouter Interview                              │
+│  Scouter contacts reporter → schedules interview →      │
+│  full protocol → ethnographic card → confirmed          │
+│                                                         │
+│  PATH 3: AI Interview                                   │
+│  "Interview me now" → AI agent conducts protocol →      │
+│  auto-card → participant confirms → Scouter reviews     │
+│                                                         │
+│  PATH 4: Scouter Direct Upload                          │
+│  Field interview → Scouter uploads card → peer review   │
+│                                                         │
+│         All paths ──→ Verified ethnographic card         │
+│                       ──→ Database                      │
+└─────────────────────────────────────────────────────────┘
+```
+
+All four paths converge on the same output: a **verified ethnographic card** that enters the database.
+
+---
+
 ## Infrastructure
 
 ### The Website — trust.fail
 
-The website serves two primary functions:
+The website has two primary functions:
 
-#### 1. Access the Data
+#### Function 1: Access the Data
 
 A browsable, filterable, searchable interface to the glitch database:
 
@@ -146,34 +226,33 @@ A browsable, filterable, searchable interface to the glitch database:
 
 This is the public research output. Anyone — AI safety researchers, conference attendees, trust scholars, agent designers, journalists — can use this data.
 
-#### 2. Report a Glitch Moment
+#### Function 2: Report a Glitch
 
-This is where data enters the system. The reporting flow is an **AI-conducted interview**:
+This is where data enters the system, through multiple pathways:
 
-- The user clicks "Report a Glitch"
-- An **AI interviewer agent** conducts the semi-structured interview in real-time
-- The participant can use **text or speech** (speech is transcribed automatically)
-- The agent follows the 5-section protocol: stakeholders → initial trust → the glitch → the experience → the mechanism
-- The conversation is recorded for the record
-- At the end, the system **auto-generates an ethnographic card** from the interview
-- The participant reviews the card: confirms, corrects, or adds context
-- A certified Scouter then reviews and approves the final card
-- Approved cards enter the database
+- **Quick report** (Path 1) — rough-report a glitch moment for the job board
+- **AI interview** (Path 3) — full semi-structured interview conducted by an AI agent, text or voice
+- **Schedule a human interview** (leads to Path 2) — request a Scouter interview
 
-This AI interviewer agent replaces the need for every interview to be human-to-human, dramatically increasing scale while maintaining the semi-structured protocol. The Scouter remains in the loop as the human verification layer — they review the generated card, not conduct every interview.
+#### Function 3: The Job Board
 
-For high-stakes or complex cases, a human Scouter can still conduct the interview directly.
+Where rough reports live, waiting for Scouters:
 
-### GitHub as Infrastructure
+- Scouters browse available reports
+- Filter by glitch type, AI system, urgency, region
+- Claim a report → contact the person → schedule an interview
+- Track interview status (unclaimed, scheduled, in-progress, completed, verified)
 
-GitHub serves as the backend:
+### GitHub as Backend
+
+GitHub serves as the source of truth:
 - **Issues** = glitch reports, interview requests, scouter applications
 - **PRs** = ethogram entries awaiting confirmation
-- **Actions** = auto-generation of ethogram YAML from structured issue forms
+- **Actions** = auto-generation of ethogram YAML from structured forms
 - **Data directory** = the canonical database (`data/coded/`)
-- **Full audit trail** built in — every edit, review, and approval is tracked
+- **Full audit trail** — every edit, review, and approval is tracked
 
-The website reads from the GitHub repo. GitHub is the source of truth.
+The website reads from the GitHub repo.
 
 ---
 

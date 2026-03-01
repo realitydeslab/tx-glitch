@@ -1,152 +1,139 @@
 # Trust.Fail — Semi-Structured Interview Protocol
 
-**Version:** 1.1
+**Version:** 2.0
 **Date:** 2026-03-01
 
 ## Philosophy
 
-The interview itself must be a **trustworthy experience**. The participant is sharing a vulnerable moment — when their trust broke or shifted. The Scouter's job is to create a safe, human space where that story can be told honestly.
+The interview itself must be a **trustworthy experience**. Keep it simple and natural. Don't over-ask — let the story emerge.
 
-The participant chooses their medium: **text chat or voice conversation** — whatever feels most natural to them.
+The participant chooses their medium: **text or voice** — whatever feels natural.
 
-## Recording Policy
+Recording exists **solely as a verifiable record** — not for analysis. The analysis happens through the **ethnographic card** generated afterward, which the Scouter reviews and confirms.
 
-The interview is **recorded** (audio, video, or text log depending on medium). This recording exists **solely as a verifiable record** — proof that what was said was said. It is:
-
-- ✅ For accuracy verification
-- ✅ For audit trail and research integrity
-- ❌ **NOT for analysis** — we do not analyze recordings directly
-
-The analysis happens through the **ethnographic card** — a structured summary generated after the interview, which the Scouter reviews and confirms.
-
-## The Pipeline
+## Pipeline
 
 ```
-Participant tells their story (text or voice)
-        ↓
-Recording captures the raw exchange (for the record)
-        ↓
-System generates an ethnographic card (structured summary)
-        ↓
-Scouter reviews & confirms the card (human verification)
-        ↓
-Confirmed card enters the database as a GitHub issue → PR
+Story (text or voice) → Recording (for the record) → Ethnographic card (auto-generated) → Scouter confirms → Database
 ```
 
-## Materials Needed
+---
 
-- Signed consent form (see `consent-form.md`)
-- Recording setup (audio/video for voice; chat logs for text)
-- This protocol
-- Ethogram coding sheet (see `ethogram.md`)
+## The Interview
+
+### Opening (2 min)
+
+> "We're collecting real stories of moments where trust between people and AI shifted. I'd like you to walk me through one experience. There are no right or wrong answers."
+
+- [ ] Consent obtained
+- [ ] Recording started
+- [ ] Medium chosen (text/voice)
 
 ---
 
-## Part 0: Setting the Space (5 min)
+### 1. The Stakeholders (5 min)
 
-**Goal:** Make the participant feel safe and in control.
+*Who are the actors in this story?*
 
-*Adapt to medium — voice or text:*
+- **Which AI system was this?** What does it do?
+- **Who owns or operates this AI?** (company, open-source project, employer?)
+- **Who pays for it?** (you, your employer, free tier, subscription?)
+- **How does this AI survive?** What's its business model? (ads, subscription, data, venture funding, open-source community?)
 
-> "Thanks for being here. We're studying moments where trust between people and AI shifts unexpectedly — we call these 'trust glitches.' I'm interested in your real experience, not hypotheticals. There are no right or wrong answers. You can stop anytime, skip anything, and choose how much detail to share. Everything will be de-identified."
-
-- [ ] Obtain consent (signed form or recorded verbal consent)
-- [ ] Confirm recording permission — explain: "The recording is just for the record, to make sure the summary is accurate. It won't be analyzed directly."
-- [ ] Let participant choose: voice or text
-- [ ] Start recording
+*Why this matters: Trust is shaped by who's behind the system and what their incentives are.*
 
 ---
 
-## Part 1: Background & AI Relationship (5–10 min)
+### 2. The Initial Trust (5 min)
 
-**Goal:** Establish baseline trust posture. Keep it conversational.
+*Why did you trust it in the first place?*
 
-1. **What AI tools do you use in your daily life?**
-2. **How would you describe your relationship with AI?** *(trusting, skeptical, pragmatic, complicated?)*
-3. **How long have you been living with AI tools?**
-4. **Do you feel like you have a "relationship" with any AI system?** Why or why not?
+- **When did you start using this AI?** How did you find it?
+- **What made you trust it initially?** (brand reputation, someone recommended it, it worked well, no alternative, you had to use it?)
+- **What level of trust did you have before the glitch?** (1–10)
+- **What were you trusting it to do?** What was the task or role?
 
----
-
-## Part 2: The Glitch — Let Them Tell the Story (15–20 min)
-
-**Goal:** Thick description. Let the story breathe.
-
-**Core prompt:**
-
-> *"Tell me about a moment when your trust in an AI shifted — broke, was shaken, or surprisingly grew. Walk me through it like you're replaying the scene."*
-
-**Follow naturally. Probe only what doesn't emerge on its own:**
-
-5. **Where were you? What were you doing?**
-6. **What did you expect the AI to do?**
-7. **What actually happened? What was the exact moment?**
-8. **What did you feel?** *(surprise, betrayal, confusion, amusement, fear, awe?)*
-9. **How did you explain it to yourself?**
-10. **What did you do next?** *(retry, abandon, test, confront, ignore?)*
-
-**Deep probes (if needed):**
-- *"Can you remember the exact words?"*
-- *"Was anyone else there?"*
-- *"Had this happened before?"*
-- *"Did you save anything — a screenshot, a log?"*
+*Why this matters: Trust doesn't start from zero — people arrive with assumptions, and those assumptions are what glitch.*
 
 ---
 
-## Part 3: Trust Trajectory (10 min)
+### 3. The Glitch Moment (10–15 min)
 
-11. **Trust before (1–10)? Trust after (1–10)?**
-12. **Did you keep using the system? Did anything change?**
-13. **Did this change how you feel about AI in general, or just this one?**
-14. **Have you told anyone this story?** How do they react?
-15. **Has your trust shifted gradually or in big jumps?**
+*This is the core. Let them tell the story.*
 
----
+> "Walk me through what happened, step by step — like you're replaying the scene."
 
-## Part 4: Ethological Reflection (10 min)
+**Follow naturally. Only probe what doesn't emerge:**
 
-*Transition: "Now I'd like you to step back and think about this more analytically."*
+- **What were you doing when it happened?**
+- **What did the AI do?** (the observable behavior)
+- **What did you expect it to do instead?**
+- **What was the exact moment you felt the shift?**
+- **What did you do?** (retry, stop, test it, confront it, work around it, leave?)
 
-16. **Do you think the AI "meant" to do what it did?** Does that question make sense?
-17. **What do you think caused it?** *(training, design, bug, emergence?)*
-18. **Do you think this happens to other people too?**
-19. **If you had to name this type of glitch, what would you call it?** *(record exact words)*
-20. **What was at stake?** *(convenience, money, health, reputation, emotions, safety?)*
+**If they have evidence:** *"Do you have a screenshot or log from that moment?"*
 
 ---
 
-## Part 5: Closing (5 min)
+### 4. The Experience (5–10 min)
 
-21. **Any other glitch moments you'd like to share?**
-22. **Anything we didn't ask that matters?**
-23. **Would you share screenshots or logs from this experience?**
-24. **Can we follow up if we have questions?**
+*How did it feel and what did it change?*
+
+- **What did you feel?** (surprise, betrayal, confusion, amusement, fear, relief, anger?)
+- **How long did that feeling last?**
+- **Trust after the glitch?** (1–10)
+- **Did you keep using the system?** Did anything change in how you use it?
+- **Did this change how you feel about AI in general, or just this one?**
+- **Have you told anyone this story?**
+
+---
+
+### 5. Digging Into the Mechanism (5–10 min)
+
+*This is the ethnographic layer — understanding why the AI behaved the way it did.*
+
+> "Now I want to understand the AI's side of this. Let's dig into what might have caused this."
+
+- **Do you know if the AI's owner configured it in a specific way?** (custom instructions, system prompts, safety settings, fine-tuning?)
+- **Was this AI behaving according to its design, or was this a bug/accident?**
+- **Do you think the company/developer intended this behavior?**
+- **Were there updates, policy changes, or external events around that time that might explain it?**
+- **Is this something the AI does consistently, or was it a one-off?**
+- **If you could see inside the system, what do you think you'd find?** (What's your theory of why this happened?)
+
+*Why this matters: We need enough data to reconstruct the mechanism — was this a design choice, a training artifact, a configuration by the operator, or emergent behavior? The participant's theory is data too, even if it's wrong.*
+
+---
+
+### Closing (2 min)
+
+- **Any other glitch moments?** (If yes, repeat sections 3–5 briefly)
+- **Anything we missed?**
+- **Can we follow up if needed?**
+
+> "We'll generate a summary card from this. You'll get to review it before anything is published."
 
 - [ ] Stop recording
 - [ ] Thank participant
-- [ ] Explain next step: "We'll generate a summary card from this conversation. You'll get to review it before anything goes public."
 
 ---
 
 ## After the Interview
 
-### The Scouter's job:
+1. System generates **ethnographic card** from the conversation
+2. Scouter **reviews & confirms** — checks against memory and recording if needed
+3. Confirmed card submitted as **GitHub Glitch Report**
+4. Participant optionally reviews before publication
 
-1. **System generates an ethnographic card** — a structured summary of the glitch event(s) using the ethogram schema
-2. **Scouter reviews the card** — checks accuracy against their memory and the recording (if needed)
-3. **Scouter confirms** — submits the verified card as a Glitch Report on GitHub
-4. **Participant optionally reviews** — if they opted in, they see the card before it's published
-
-The recording is archived securely. It is **never published** and is only consulted if there's a factual dispute about the card.
+Recording is archived securely. Never published. Only consulted for factual disputes.
 
 ---
 
 ## Tips for Scouters
 
-- **This is a conversation, not an interrogation.** Match their energy.
-- **Text interviews are valid.** Some people are more honest in writing. Let them choose.
-- **Listen more than you talk.**
-- **Follow the story** — you can always come back to the protocol.
-- **Don't judge.** Loving an AI and hating an AI are both data.
+- **Less is more.** Don't ask every bullet — follow the story, fill gaps.
+- **Section 3 is the heart.** Give it space. Don't rush.
+- **Section 5 is what makes this research.** Dig into the mechanism — but stay curious, not interrogative.
+- **Text interviews are valid.** Some people are more honest in writing.
+- **The recording is a safety net, not a spotlight.** Make sure they know.
 - **Silence is okay.** Let them think.
-- **The recording is a safety net, not a spotlight.** Make sure they know that.

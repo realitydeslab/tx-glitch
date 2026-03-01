@@ -323,6 +323,35 @@ Year 2–3: Scale to 1,000+ cards. Emergent taxonomy stabilizes. Cross-cultural 
 
 Year 3+: Trust.Fail becomes the standard reference dataset for trust in human-AI interaction. Cited across AI safety, HCI, STS, policy. Continuously growing. A living infrastructure for the field.
 
+---
+
+## Funding Opportunities
+
+### UK ARIA — Trust Everything, Everywhere
+
+[ARIA](https://www.aria.org.uk/) (Advanced Research and Invention Agency) has a directly relevant opportunity space: **"Trust Everything, Everywhere"** — focused on building new trust infrastructure that straddles digital and physical worlds. Trust.Fail provides the empirical foundation for understanding where digital trust breaks down.
+
+Additional ARIA opportunity spaces that align:
+- **Mathematics for Safe AI** — "ensuring AI provides transformational benefit without harm." Trust.Fail provides the real-world failure data that mathematical safety guarantees need to account for.
+- **Collective Flourishing** — "creating new systems that integrate a deep understanding of people." Trust.Fail is exactly this: a system for deeply understanding how people experience AI trust.
+
+**Fit:** Trust.Fail is research infrastructure — not a single study but a platform that enables many studies. This matches ARIA's model of funding transformative, long-term research programmes.
+
+### Other Potential Funders
+
+| Funder | Programme | Fit |
+|--------|-----------|-----|
+| **UK ARIA** | Trust Everything, Everywhere | Direct: trust infrastructure for digital-physical boundary |
+| **UK ARIA** | Mathematics for Safe AI | Empirical ground truth for AI safety guarantees |
+| **UK ARIA** | Collective Flourishing | Understanding people's AI experiences at scale |
+| **UKRI / EPSRC** | Trustworthy Autonomous Systems | Core theme overlap |
+| **Leverhulme Trust** | Research Programme Grants | Long-term, open-ended research infrastructure |
+| **Mozilla Foundation** | Responsible AI grants | Open data, public benefit, AI accountability |
+| **Omidyar Network** | Tech & Society | Trust in digital systems |
+| **Open Society Foundations** | Information & Digital Rights | AI transparency and accountability |
+| **NSF** (US) | Cyber-Human Systems / Safe Learning-Enabled Systems | If collaborating with US institution |
+| **EU Horizon Europe** | Cluster 2: Culture, Creativity & Inclusive Society | Human-centred AI, trust |
+
 
 ---
 

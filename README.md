@@ -30,16 +30,6 @@ The Scouter reviews the auto-generated ethogram PR — confirms facts, corrects 
 ### 6. 📊 Database Grows
 Merged PRs add coded entries to `data/coded/`. Over time: a searchable, citable corpus of trust glitches.
 
-## Become a Glitch Scouter
-
-Glitch Scouters are certified student interviewers — the human quality layer. [Apply here](../../issues/new?template=scouter-application.yml).
-
-| Level | Title | Requirements |
-|-------|-------|-------------|
-| 1 | **Scout** | Certified, <10 interviews |
-| 2 | **Pathfinder** | 10+ interviews, consistent reliability |
-| 3 | **Ranger** | 25+ interviews, can train new Scouters |
-
 ## Methodology
 
 **Dual-lens approach:**
@@ -57,8 +47,7 @@ This project uses **broad listening** principles: technology-assisted deliberati
 ```
 trust.fail/
 ├── protocol/               # Interview protocol, consent forms, ethogram coding scheme
-├── scouters/               # Certification guide & training materials
-├── data/coded/             # Verified ethogram entries (YAML)
+├── ├── data/coded/             # Verified ethogram entries (YAML)
 ├── research-log/           # Research ideas and decisions
 └── analysis/               # Scripts and visualizations
 ```

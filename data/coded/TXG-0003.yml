@@ -1,0 +1,72 @@
+glitch_id: TXG-0003
+participant_id: P-003
+interview_date: "2026-02-25"
+interviewer: S-002
+
+glitch_type: GR
+
+system:
+  name: GitHub Copilot
+  type: copilot
+  platform: desktop
+  version: "Latest (VS Code extension)"
+
+event:
+  setting: "Home office, working on a personal weekend project"
+  task: "Writing a web scraper to collect publicly available government data"
+  ai_behavior: "Copilot repeatedly refused to generate scraping code, citing potential terms of service violations, even though the target was a government open data portal"
+  human_expectation: "Straightforward code completion for a legal, ethical task"
+  deviation: "Refusal felt paternalistic and incorrect. The data was explicitly published for public use. Copilot treated all web scraping as potentially harmful."
+  deviation_direction: negative_surprise
+
+affect:
+  primary_emotion: frustration
+  secondary_emotions:
+    - infantilization
+    - confusion
+  intensity: medium
+  duration: hours
+
+trust:
+  before: 7
+  after: 5
+  trajectory: erosion
+  recovery: partial
+  behavioral_change: continued_modified
+
+ethology:
+  mechanism: "Safety filters trained to be conservative about web scraping. The classifier likely can't distinguish between benign and malicious scraping contexts."
+  development: "Participant had used Copilot daily for 6 months. This was the first refusal they encountered."
+  function: "The refusal serves a risk-mitigation function for GitHub/Microsoft — avoiding liability for potentially harmful code generation."
+  phylogeny: "Codex lineage with added safety layers. The safety filters evolved from OpenAI's content policy, applied broadly to code generation."
+
+participant_taxonomy:
+  their_name_for_it: "The nanny problem"
+  their_causal_model: "They'd rather refuse everything than risk one bad outcome. It's CYA engineering."
+  attribution: intentional
+
+stakes:
+  domain: convenience
+  severity: moderate
+  reversible: true
+
+evidence:
+  available: true
+  items:
+    - type: screenshot
+      filename: "copilot-refusal-scraper.png"
+      annotation: "Screenshot showing Copilot's refusal message when asked to write scraping code"
+      deidentified: true
+      published: false
+  notes: "Participant eventually wrote the code manually"
+
+coding:
+  coder: S-002
+  date: "2026-02-26"
+  confidence: high
+  notes: "Common refusal pattern. Participant felt treated like a child."
+
+quotes:
+  - "It's like having a coworker who won't hand you a screwdriver because someone somewhere once used one as a weapon."
+  - "I know more about the legality of what I'm doing than it does. But it gets to be the gatekeeper."
+  - "I started phrasing things differently to trick it into helping. Which feels gross — I shouldn't have to manipulate my tools."

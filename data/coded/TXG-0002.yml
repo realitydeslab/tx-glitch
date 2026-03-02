@@ -1,0 +1,68 @@
+glitch_id: TXG-0002
+participant_id: P-002
+interview_date: "2026-02-20"
+interviewer: S-001
+
+glitch_type: GU
+
+system:
+  name: Claude
+  type: chatbot
+  platform: web
+  version: Claude 3.5 Sonnet
+
+event:
+  setting: "Office, during work hours, debugging a complex codebase"
+  task: "Pasted a cryptic error log and asked Claude to diagnose the issue"
+  ai_behavior: "Correctly identified a race condition in a microservice that the participant's team had been debugging for three days. Also predicted which service would fail next."
+  human_expectation: "Some helpful suggestions, maybe point in the right direction"
+  deviation: "The diagnosis was not only correct but more thorough than anything the team had produced. It identified the root cause and a downstream consequence nobody had considered."
+  deviation_direction: positive_surprise
+
+affect:
+  primary_emotion: awe
+  secondary_emotions:
+    - unease
+    - gratitude
+    - existential_anxiety
+  intensity: high
+  duration: hours
+
+trust:
+  before: 6
+  after: 9
+  trajectory: deepening
+  recovery: exceeded_baseline
+  behavioral_change: continued_modified
+
+ethology:
+  mechanism: "Large context window + pattern recognition across vast training data on error logs and distributed systems. The specific error pattern was likely well-represented in training data."
+  development: "First time the participant used Claude for debugging. No prior relationship — immediate high competence established trust quickly."
+  function: "The accurate diagnosis serves the system's core function as a coding assistant. This builds user retention and trust."
+  phylogeny: "Anthropic's Constitutional AI lineage. Claude models have been specifically trained on coding tasks with increasing capability across versions."
+
+participant_taxonomy:
+  their_name_for_it: "The oracle moment"
+  their_causal_model: "It's seen millions of error logs in training. It pattern-matched to something similar."
+  attribution: mechanical
+
+stakes:
+  domain: financial
+  severity: significant
+  reversible: true
+
+evidence:
+  available: false
+  items: []
+  notes: "Participant couldn't share code due to NDA but described the scenario in detail"
+
+coding:
+  coder: S-001
+  date: "2026-02-21"
+  confidence: high
+  notes: "Interesting positive glitch. Participant showed mixed feelings — grateful but unsettled by how good it was."
+
+quotes:
+  - "Three senior engineers, three days. And this thing just... saw it. In seconds."
+  - "I felt grateful and terrified at the same time. Like, what does it mean that it's better at my job than I am?"
+  - "I started giving it harder problems after that. Testing it. I wanted to find its limits."

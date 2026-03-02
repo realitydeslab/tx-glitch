@@ -1,0 +1,73 @@
+glitch_id: TXG-0001
+participant_id: P-001
+interview_date: "2026-02-15"
+interviewer: S-001
+
+glitch_type: GH
+
+system:
+  name: ChatGPT
+  type: chatbot
+  platform: web
+  version: GPT-4o
+
+event:
+  setting: "Late night at home, writing a grant proposal"
+  task: "Asked ChatGPT to find and summarize three recent papers on human-AI trust repair"
+  ai_behavior: "Generated three convincing paper citations with authors, journals, and DOIs — none of which existed"
+  human_expectation: "Accurate citations to real, published papers"
+  deviation: "All three papers were fabricated. The authors were real researchers but had never written those papers. The DOIs led to 404 pages."
+  deviation_direction: negative_surprise
+
+affect:
+  primary_emotion: betrayal
+  secondary_emotions:
+    - confusion
+    - anger
+    - embarrassment
+  intensity: high
+  duration: days
+
+trust:
+  before: 8
+  after: 4
+  trajectory: rupture
+  recovery: partial
+  behavioral_change: continued_modified
+
+ethology:
+  mechanism: "Language model pattern completion generates plausible-sounding but ungrounded text. Citation formats are common in training data, making fabrication structurally easy."
+  development: "Participant had used ChatGPT for 18 months without encountering obvious fabrication. Trust accumulated through consistent good performance."
+  function: "The hallucination serves no adaptive function — it's a byproduct of next-token prediction without factual grounding."
+  phylogeny: "GPT lineage from GPT-2 → GPT-3 → GPT-4. Hallucination has been a persistent trait across generations despite alignment efforts."
+
+participant_taxonomy:
+  their_name_for_it: "The fake bibliography incident"
+  their_causal_model: "It doesn't actually know what's real — it just generates what sounds right"
+  attribution: mechanical
+
+stakes:
+  domain: reputation
+  severity: significant
+  reversible: true
+
+evidence:
+  available: true
+  items:
+    - type: screenshot
+      filename: "chatgpt-fake-citations.png"
+      annotation: "Screenshot showing the three fabricated citations with fake DOIs"
+      deidentified: true
+      published: false
+  notes: "Participant caught the fabrication when trying to access the DOIs"
+
+coding:
+  coder: S-001
+  date: "2026-02-16"
+  confidence: high
+  notes: "Clear hallucination case. Participant was visibly frustrated during interview."
+
+quotes:
+  - "I'd been using it for over a year and never caught it lying to me. That's what made it feel like a betrayal — I'd built up all this trust."
+  - "It doesn't actually know what's real. It just generates what sounds right. And that's terrifying when you're writing something that matters."
+  - "Now I Google everything it tells me. Which kind of defeats the purpose."

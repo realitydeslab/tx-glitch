@@ -51,7 +51,10 @@ Discord is where people already discuss AI. It has text, voice, threads, file up
 
 **How it works:**
 
-1. **Public Discord server** for Trust.Fail (this server)
+1. **Dedicated Trust.Fail Discord server** (separate from the research server)
+   - Invite link prominently on trust.fail website: "Report a Glitch → Join our Discord"
+   - Public server, anyone can join
+   - OpenClaw deployed as the interview bot
 2. Someone says "I got glitched" or reacts to a prompt or types a command
 3. **OpenClaw creates a private thread** for the interview
 4. The interview happens right there — text-based, in the thread

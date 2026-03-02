@@ -1,0 +1,111 @@
+\begin{thebibliography}{14}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Castelfranchi and Falcone(2010)]{castelfranchi2010trust}
+Cristiano Castelfranchi and Rino Falcone.
+\newblock Trust, cognitive, and computational.
+\newblock In \emph{Trust Theory: A Socio-Cognitive and Computational Model},
+  pages 1--18. John Wiley \& Sons, 2010.
+\newblock \doi{10.1002/9780470519851}.
+
+\bibitem[Hancock et~al.(2011)Hancock, Billings, Schaefer, Chen, De~Visser, and
+  Parasuraman]{hancock2011meta}
+Peter~A Hancock, Deborah~R Billings, Kristin~E Schaefer, Jessie~YC Chen,
+  Ewart~J De~Visser, and Raja Parasuraman.
+\newblock A meta-analysis of factors affecting trust in human-robot
+  interaction.
+\newblock \emph{Human Factors}, 53\penalty0 (5):\penalty0 517--527, 2011.
+\newblock \doi{10.1177/0018720811417254}.
+
+\bibitem[Hoff and Bashir(2015)]{hoff2015trust}
+Kevin~Anthony Hoff and Masooda Bashir.
+\newblock Trust in automation: Integrating empirical evidence on factors that
+  influence trust.
+\newblock \emph{Human Factors}, 57\penalty0 (3):\penalty0 407--434, 2015.
+\newblock \doi{10.1177/0018720814547570}.
+
+\bibitem[Jacovi et~al.(2021)Jacovi, Marasovi{\'c}, Miller, and
+  Goldberg]{jacovi2021formalizing}
+Alon Jacovi, Ana Marasovi{\'c}, Tim Miller, and Yoav Goldberg.
+\newblock Formalizing trust in artificial intelligence: Prerequisites, causes
+  and goals of human trust in ai.
+\newblock \emph{Proceedings of the 2021 ACM Conference on Fairness,
+  Accountability, and Transparency}, pages 624--635, 2021.
+\newblock \doi{10.1145/3442188.3445923}.
+
+\bibitem[Jian et~al.(2000)Jian, Bisantz, and Drury]{jian2000foundations}
+Jiun-Yin Jian, Ann~M Bisantz, and Colin~G Drury.
+\newblock Foundations for an empirically determined scale of trust in automated
+  systems.
+\newblock \emph{International Journal of Cognitive Ergonomics}, 4\penalty0
+  (1):\penalty0 53--71, 2000.
+\newblock \doi{10.1207/S15327566IJCE0401_04}.
+
+\bibitem[Lee and See(2004)]{lee2004trust}
+John~D Lee and Katrina~A See.
+\newblock Trust in automation: Designing for appropriate reliance.
+\newblock \emph{Human Factors}, 46\penalty0 (1):\penalty0 50--80, 2004.
+\newblock \doi{10.1518/hfes.46.1.50.30392}.
+
+\bibitem[Lorenz(1937)]{lorenz1937companions}
+Konrad Lorenz.
+\newblock The companion in the bird's world.
+\newblock \emph{The Auk}, 54\penalty0 (3):\penalty0 245--273, 1937.
+\newblock \doi{10.2307/4078077}.
+
+\bibitem[Martin and Bateson(2007)]{martin2007measuring}
+Paul Martin and Patrick Bateson.
+\newblock \emph{Measuring Behaviour: An Introductory Guide}.
+\newblock Cambridge University Press, 3rd edition, 2007.
+\newblock \doi{10.1017/CBO9780511810893}.
+
+\bibitem[Mayer et~al.(1995)Mayer, Davis, and Schoorman]{mayer1995integrative}
+Roger~C Mayer, James~H Davis, and F~David Schoorman.
+\newblock An integrative model of organizational trust.
+\newblock \emph{Academy of Management Review}, 20\penalty0 (3):\penalty0
+  709--734, 1995.
+\newblock \doi{10.5465/amr.1995.9508080335}.
+
+\bibitem[McGregor(2021)]{mcgregor2021preventing}
+Sean McGregor.
+\newblock Preventing repeated real world ai failures by cataloging incidents:
+  The ai incident database.
+\newblock \emph{Proceedings of the AAAI Conference on Artificial Intelligence},
+  35\penalty0 (17):\penalty0 15458--15463, 2021.
+\newblock \doi{10.1609/aaai.v35i17.17817}.
+
+\bibitem[Rahwan et~al.(2019)Rahwan, Cebrian, Obradovich, Bongard, Bonnefon,
+  Breazeal, Crandall, Christakis, Couzin, Jackson, et~al.]{rahwan2019machine}
+Iyad Rahwan, Manuel Cebrian, Nick Obradovich, Josh Bongard, Jean-Fran{\c{c}}ois
+  Bonnefon, Cynthia Breazeal, Jacob~W Crandall, Nicholas~A Christakis, Iain~D
+  Couzin, Matthew~O Jackson, et~al.
+\newblock Machine behaviour.
+\newblock \emph{Nature}, 568\penalty0 (7753):\penalty0 477--486, 2019.
+\newblock \doi{10.1038/s41586-019-1138-y}.
+
+\bibitem[Reynard(1986)]{reynard1986asrs}
+William~D Reynard.
+\newblock The development of the nasa aviation safety reporting system.
+\newblock \emph{Reference Publication}, 1114, 1986.
+
+\bibitem[Small et~al.(2023)Small, Bjorkegren, Erkkilä, Shaw, and
+  Megill]{small2023polis}
+Christopher~T Small, Matthew Bjorkegren, Timo Erkkilä, Lynette Shaw, and Colin
+  Megill.
+\newblock Polis: Scaling deliberation by mapping high dimensional opinion
+  spaces.
+\newblock \emph{Reckhow. Online}, 2023.
+\newblock URL \url{https://compdemocracy.org/Polis/}.
+
+\bibitem[Tinbergen(1963)]{tinbergen1963aims}
+Niko Tinbergen.
+\newblock On aims and methods of ethology.
+\newblock \emph{Zeitschrift f{\"u}r Tierpsychologie}, 20\penalty0 (4):\penalty0
+  410--433, 1963.
+\newblock \doi{10.1111/j.1439-0310.1963.tb01161.x}.
+
+\end{thebibliography}

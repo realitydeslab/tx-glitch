@@ -1,112 +1,129 @@
+import Link from "next/link";
 import { getGlitches } from "@/lib/glitches";
 import { GlitchCard } from "@/components/GlitchCard";
-import Link from "next/link";
-
-/*
- * Alternative title ideas:
- * - "Trust.Fail — When the machine breaks your trust"
- * - "Trust.Glitch — The ethnographic atlas of broken AI trust"
- * - "Glitch.Trust — Field notes from the human-AI frontier"
- * - "TrustBreak — A living archive of human-AI trust failures"
- * - "The Glitch Index — Cataloguing trust fractures in the age of AI"
- * - "Trust.404 — Not found: the trust you were looking for"
- * - "SIGFAULT — Trust interrupted"
- */
 
 export default async function Home() {
   const glitches = await getGlitches();
-  const recent = glitches.slice(0, 4);
+  const typeCount = new Set(glitches.map(g => g.glitch_type)).size;
+  const systemCount = new Set(glitches.map(g => g.system?.name)).size;
 
   return (
-    <div className="pt-14">
+    <div className="pt-16">
       {/* Hero */}
-      <section className="relative overflow-hidden scanline">
-        <div className="max-w-6xl mx-auto px-6 py-32 md:py-44 text-center relative z-10">
-          {/* Decorative broken lines */}
-          <div className="absolute top-20 left-10 w-32 h-px bg-glitch-accent/20 rotate-12" />
-          <div className="absolute top-32 right-16 w-24 h-px bg-glitch-cyan/20 -rotate-6" />
-          
-          <h1 className="glitch-text font-mono text-6xl md:text-8xl font-bold tracking-tighter mb-6">
-            <span className="text-glitch-accent">Trust</span>
-            <span className="text-glitch-text-dim">.</span>
-            <span className="text-glitch-text">Fail</span>
-          </h1>
-          
-          <p className="text-2xl md:text-3xl font-mono text-glitch-text mb-4 tracking-tight">
-            Trust broke. Tell us what happened.
-          </p>
-          
-          <p className="text-base md:text-lg text-glitch-text-dim max-w-2xl mx-auto mb-12 leading-relaxed">
-            The open ethnographic database of trust glitches between humans and AI agents in the wild
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/browse"
-              className="px-8 py-4 bg-glitch-surface border border-glitch-border rounded font-mono text-sm font-medium hover:bg-glitch-surface-hover hover:border-glitch-accent/50 transition-all"
-            >
-              Browse Glitches →
-            </Link>
-            <a
-              href={process.env.NEXT_PUBLIC_DISCORD_INVITE || "#"}
-              className="px-8 py-4 bg-glitch-accent text-white rounded font-mono text-sm font-medium hover:bg-glitch-accent-dim transition-all"
-            >
-              Report a Glitch ⚡
-            </a>
-          </div>
+      <section className="max-w-4xl mx-auto px-6 py-24 text-center">
+        <h1 className="font-serif text-6xl md:text-8xl tracking-tight mb-6">
+          <span className="text-coral">Trust</span>
+          <span className="text-warm-dim">.</span>
+          <span className="text-warm-dark">Fail</span>
+        </h1>
+        <p className="text-2xl md:text-3xl font-serif text-warm-dark mb-4">
+          AI breaks your trust?<br />Tell us what happened.
+        </p>
+        <p className="text-lg text-warm-dim max-w-2xl mx-auto mb-12 leading-relaxed">
+          The open ethnographic database of trust glitches between humans and AI agents in the wild.
+        </p>
+        <div className="flex gap-4 justify-center flex-wrap">
+          <Link href="/browse" className="bg-warm-dark text-cream px-8 py-4 rounded-full text-lg font-semibold hover:bg-warm-dim transition-colors">
+            Browse Glitches
+          </Link>
+          <a href={process.env.NEXT_PUBLIC_DISCORD_INVITE || "#"} className="bg-coral text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-coral-dark transition-colors">
+            Report a Glitch →
+          </a>
         </div>
-
-        {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-glitch-accent/5 via-transparent to-transparent pointer-events-none" />
       </section>
 
-      {/* Stats bar */}
-      <section className="border-y border-glitch-border bg-glitch-surface/50">
-        <div className="max-w-6xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { label: "Glitches Documented", value: glitches.length || "—" },
-            { label: "AI Systems Covered", value: new Set(glitches.map(g => g.system?.name)).size || "—" },
-            { label: "Avg Trust Delta", value: glitches.length ? `−${(glitches.reduce((s, g) => s + ((g.trust?.before || 0) - (g.trust?.after || 0)), 0) / glitches.length).toFixed(1)}` : "—" },
-            { label: "Contributors", value: new Set(glitches.map(g => g.participant_id)).size || "—" },
-          ].map((stat) => (
-            <div key={stat.label} className="text-center">
-              <div className="font-mono text-3xl font-bold text-glitch-cyan">{stat.value}</div>
-              <div className="text-xs text-glitch-text-dim font-mono mt-1 uppercase tracking-wider">{stat.label}</div>
+      {/* What is a trust glitch? — editorial section */}
+      <section className="bg-warm-light py-20">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="font-serif text-3xl mb-6">What is a trust glitch?</h2>
+          <p className="text-lg leading-relaxed text-warm-dim mb-6">
+            A <em>trust glitch</em> is any moment where your trust in an AI system shifts unexpectedly — a sudden break, a creeping doubt, a surprising deepening. It&apos;s the moment the seams of human-AI symbiosis become visible.
+          </p>
+          <p className="text-lg leading-relaxed text-warm-dim">
+            Your chatbot confidently invents facts. Your copilot writes code that works too well. Your voice assistant says something it shouldn&apos;t know. These moments are data — and we&apos;re collecting them.
+          </p>
+        </div>
+      </section>
+
+      {/* Stats */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="grid grid-cols-3 gap-8 text-center">
+            <div>
+              <p className="font-serif text-5xl text-coral">{glitches.length}</p>
+              <p className="text-warm-dim mt-2">Glitches Documented</p>
             </div>
-          ))}
+            <div>
+              <p className="font-serif text-5xl text-teal">{typeCount}</p>
+              <p className="text-warm-dim mt-2">Glitch Types</p>
+            </div>
+            <div>
+              <p className="font-serif text-5xl text-purple">{systemCount}</p>
+              <p className="text-warm-dim mt-2">AI Systems</p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Recent glitches */}
-      {recent.length > 0 && (
-        <section className="max-w-6xl mx-auto px-6 py-20">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="font-mono text-xl font-bold">Recent Glitches</h2>
-            <Link href="/browse" className="text-sm font-mono text-glitch-text-dim hover:text-glitch-accent transition-colors">
+      <section className="py-16 bg-warm-light">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="flex items-end justify-between mb-10">
+            <div>
+              <h2 className="font-serif text-3xl">Recent Glitches</h2>
+              <p className="text-warm-dim mt-2">The latest trust experiences from the wild</p>
+            </div>
+            <Link href="/browse" className="text-coral hover:text-coral-dark font-semibold transition-colors">
               View all →
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {recent.map((glitch) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {glitches.slice(0, 4).map((glitch) => (
               <GlitchCard key={glitch.glitch_id} glitch={glitch} />
             ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* CTA section */}
-      <section className="max-w-6xl mx-auto px-6 py-20">
-        <div className="border border-glitch-border rounded-lg p-12 text-center bg-glitch-surface/30 relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-glitch-accent/50 to-transparent" />
-          <h2 className="font-mono text-2xl font-bold mb-4">Got glitched?</h2>
-          <p className="text-glitch-text-dim mb-8 max-w-lg mx-auto">
-            Every trust glitch is a data point. Every data point helps us understand how humans and AI actually relate. Your story matters.
+      {/* How it works */}
+      <section className="py-20">
+        <div className="max-w-3xl mx-auto px-6 text-center">
+          <h2 className="font-serif text-3xl mb-12">How it works</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div className="text-center">
+              <div className="text-4xl mb-4">💬</div>
+              <h3 className="font-semibold text-lg mb-2">Tell your story</h3>
+              <p className="text-warm-dim text-sm leading-relaxed">
+                Join our Discord and share your trust glitch. Our AI interviewer walks you through 5 questions.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🔬</div>
+              <h3 className="font-semibold text-lg mb-2">We analyze it</h3>
+              <p className="text-warm-dim text-sm leading-relaxed">
+                Your experience becomes a structured ethnographic card using ethological analysis.
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🌍</div>
+              <h3 className="font-semibold text-lg mb-2">Open data</h3>
+              <p className="text-warm-dim text-sm leading-relaxed">
+                Your de-identified glitch joins an open database that researchers worldwide can cite and build on.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-coral py-20 text-center">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="font-serif text-4xl text-white mb-4">Got a story?</h2>
+          <p className="text-white/80 text-lg mb-8">
+            Every trust failure is data. Every glitch tells us something about how humans and AI learn to live together.
           </p>
-          <a
-            href={process.env.NEXT_PUBLIC_DISCORD_INVITE || "#"}
-            className="inline-block px-8 py-4 bg-glitch-accent text-white rounded font-mono text-sm font-medium hover:bg-glitch-accent-dim transition-all"
-          >
-            Share Your Story →
+          <a href={process.env.NEXT_PUBLIC_DISCORD_INVITE || "#"} className="bg-white text-coral px-8 py-4 rounded-full text-lg font-bold hover:bg-cream transition-colors inline-block">
+            Report a Glitch →
           </a>
         </div>
       </section>

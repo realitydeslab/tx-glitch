@@ -2,42 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --cream: #FFF8F0;
+  --warm-light: #FFF1E6;
+  --warm-dark: #2D2926;
+  --warm-dim: #8B7E74;
+  --warm-border: #E8DDD3;
+  --coral: #E85D75;
+  --coral-dark: #D14A62;
+  --teal: #2EC4B6;
+  --teal-dark: #1FA396;
+  --yellow: #FFD166;
+  --purple: #9B72CF;
+}
+
 body {
-  background: #0a0a0f;
-  color: #e0e0e8;
+  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+  color: var(--warm-dark);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
 }
 
-.glitch-noise {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none;
-  z-index: 50;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+.font-serif {
+  font-family: 'DM Serif Display', Georgia, serif;
 }
 
-@keyframes glitch-shift {
-  0%, 100% { transform: translate(0); }
-  20% { transform: translate(-2px, 1px); }
-  40% { transform: translate(2px, -1px); }
-  60% { transform: translate(-1px, 2px); }
-  80% { transform: translate(1px, -2px); }
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
 }
 
-.glitch-text:hover {
-  animation: glitch-shift 0.3s ease-in-out;
+/* Story card hover */
+.story-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.story-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(45, 41, 38, 0.08);
 }
 
-.scanline::after {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    rgba(0,0,0,0.05) 2px,
-    rgba(0,0,0,0.05) 4px
-  );
-  pointer-events: none;
+/* Trust delta visualization */
+.trust-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Blockquote styling */
+blockquote {
+  border-left: 3px solid var(--coral);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--warm-dim);
+}
+
+/* Selection */
+::selection {
+  background: rgba(232, 93, 117, 0.15);
 }

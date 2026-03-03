@@ -1,4 +1,4 @@
-import { getGlitch, getGlitches, getGlitchTypeName, getGlitchTypeColor } from "@/lib/glitches";
+import { getGlitch, getGlitches, getGlitchTypeName } from "@/lib/glitches";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
@@ -22,170 +22,161 @@ export default async function GlitchDetailPage({ params }: { params: Promise<{ i
   const glitch = await getGlitch(id);
   if (!glitch) notFound();
 
-  const typeCode = glitch.glitch_type || "??";
-  const typeColor = getGlitchTypeColor(typeCode);
-
+  const typeName = getGlitchTypeName(glitch.glitch_type || "");
   const bibtex = `@misc{${glitch.glitch_id.toLowerCase()},
-  title     = {Trust Glitch Report: ${glitch.glitch_id}},
+  title     = {Trust Glitch: ${glitch.glitch_id}},
   author    = {Trust.Fail Contributors},
   year      = {${glitch.interview_date?.split("-")[0] || "2026"}},
-  url       = {https://trust.fail/glitch/${glitch.glitch_id}},
-  note      = {Ethnographic trust glitch card from the Trust.Fail database}
+  url       = {https://trust.fail/glitch/${glitch.glitch_id}}
 }`;
 
-  const yamlDownloadUrl = `data:text/yaml;charset=utf-8,${encodeURIComponent(JSON.stringify(glitch, null, 2))}`;
-  const jsonDownloadUrl = `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(glitch, null, 2))}`;
-
   return (
-    <div className="pt-14">
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        {/* Back */}
-        <Link href="/browse" className="text-sm font-mono text-glitch-text-dim hover:text-glitch-accent transition-colors mb-8 inline-block">
-          ← Back to Browse
+    <div className="pt-16">
+      <article className="max-w-3xl mx-auto px-6 py-16">
+        <Link href="/browse" className="text-sm text-coral hover:text-coral-dark transition-colors mb-8 inline-block font-medium">
+          ← Back to all glitches
         </Link>
 
         {/* Header */}
-        <div className="flex items-start justify-between mb-8">
-          <div>
-            <div className="flex items-center gap-3 mb-3">
-              <span className={`px-2 py-0.5 text-xs font-mono font-medium rounded border ${typeColor}`}>
-                {typeCode}
-              </span>
-              <span className="text-sm text-glitch-text-dim font-mono">{getGlitchTypeName(typeCode)}</span>
+        <header className="mb-12 border-b border-warm-border pb-8">
+          <p className="text-coral font-semibold mb-2">{typeName}</p>
+          <h1 className="font-serif text-4xl mb-4">{glitch.event?.deviation || glitch.glitch_id}</h1>
+          <div className="flex items-center gap-6 text-warm-dim text-sm">
+            <span>{glitch.system?.name}</span>
+            <span>·</span>
+            <span>{glitch.interview_date}</span>
+            <span>·</span>
+            <div className="font-mono">
+              Trust: <span className="text-teal font-semibold">{glitch.trust?.before}</span>
+              {" → "}
+              <span className="text-coral font-semibold">{glitch.trust?.after}</span>
             </div>
-            <h1 className="font-mono text-2xl font-bold">{glitch.glitch_id}</h1>
-            <p className="text-glitch-text-dim text-sm mt-1 font-mono">
-              {glitch.system?.name} · {glitch.interview_date} · {glitch.trust?.trajectory}
-            </p>
           </div>
-          <div className="text-right font-mono">
-            <div className="text-3xl font-bold">
-              <span className="text-glitch-cyan">{glitch.trust?.before ?? "?"}</span>
-              <span className="text-glitch-text-dim mx-2">→</span>
-              <span className="text-glitch-accent">{glitch.trust?.after ?? "?"}</span>
-            </div>
-            <div className="text-xs text-glitch-text-dim mt-1">trust delta</div>
-          </div>
-        </div>
+        </header>
 
-        {/* Sections */}
-        <div className="space-y-6">
-          <Section title="System">
-            <Field label="Name" value={glitch.system?.name} />
-            <Field label="Type" value={glitch.system?.type} />
-            <Field label="Platform" value={glitch.system?.platform} />
-            <Field label="Version" value={glitch.system?.version} />
-          </Section>
+        {/* The Story */}
+        <Section title="What happened">
+          <p className="mb-3"><strong>Setting:</strong> {glitch.event?.setting}</p>
+          <p className="mb-3"><strong>Task:</strong> {glitch.event?.task}</p>
+          <p className="mb-3"><strong>What the AI did:</strong> {glitch.event?.ai_behavior}</p>
+          <p className="mb-3"><strong>What was expected:</strong> {glitch.event?.human_expectation}</p>
+          <p><strong>The deviation:</strong> {glitch.event?.deviation}</p>
+        </Section>
 
-          <Section title="The Event">
-            <Field label="Setting" value={glitch.event?.setting} />
-            <Field label="Task" value={glitch.event?.task} />
-            <Field label="AI Behavior" value={glitch.event?.ai_behavior} />
-            <Field label="Expectation" value={glitch.event?.human_expectation} />
-            <Field label="Deviation" value={glitch.event?.deviation} />
-            <Field label="Direction" value={glitch.event?.deviation_direction} />
-          </Section>
-
-          <Section title="Affective Response">
-            <Field label="Primary Emotion" value={glitch.affect?.primary_emotion} />
-            <Field label="Secondary" value={glitch.affect?.secondary_emotions?.join(", ")} />
-            <Field label="Intensity" value={glitch.affect?.intensity} />
-            <Field label="Duration" value={glitch.affect?.duration} />
-          </Section>
-
-          <Section title="Trust Trajectory">
-            <Field label="Before" value={String(glitch.trust?.before)} />
-            <Field label="After" value={String(glitch.trust?.after)} />
-            <Field label="Trajectory" value={glitch.trust?.trajectory} />
-            <Field label="Recovery" value={glitch.trust?.recovery} />
-            <Field label="Behavioral Change" value={glitch.trust?.behavioral_change} />
-          </Section>
-
-          <Section title="Ethological Analysis">
-            <Field label="Mechanism (How)" value={glitch.ethology?.mechanism} />
-            <Field label="Development (Ontogeny)" value={glitch.ethology?.development} />
-            <Field label="Function (Why)" value={glitch.ethology?.function} />
-            <Field label="Phylogeny (Lineage)" value={glitch.ethology?.phylogeny} />
-          </Section>
-
-          <Section title="Participant's Framing">
-            <Field label="Their name for it" value={glitch.participant_taxonomy?.their_name_for_it} />
-            <Field label="Their causal model" value={glitch.participant_taxonomy?.their_causal_model} />
-            <Field label="Attribution" value={glitch.participant_taxonomy?.attribution} />
-          </Section>
-
-          <Section title="Stakes">
-            <Field label="Domain" value={glitch.stakes?.domain} />
-            <Field label="Severity" value={glitch.stakes?.severity} />
-            <Field label="Reversible" value={glitch.stakes?.reversible ? "Yes" : "No"} />
-          </Section>
-
-          {glitch.quotes && glitch.quotes.length > 0 && (
-            <Section title="Notable Quotes">
-              <div className="space-y-3">
-                {glitch.quotes.map((q, i) => (
-                  <blockquote key={i} className="border-l-2 border-glitch-accent/50 pl-4 text-sm text-glitch-text italic">
-                    &ldquo;{q}&rdquo;
-                  </blockquote>
-                ))}
-              </div>
-            </Section>
+        <Section title="How it felt">
+          <p className="mb-3">
+            <strong>Primary emotion:</strong> {glitch.affect?.primary_emotion}
+            {glitch.affect?.intensity && <span className="text-warm-dim"> ({glitch.affect.intensity} intensity)</span>}
+          </p>
+          {glitch.affect?.secondary_emotions?.length > 0 && (
+            <p className="mb-3"><strong>Also felt:</strong> {glitch.affect.secondary_emotions.join(", ")}</p>
           )}
-        </div>
+          <p><strong>Duration:</strong> {glitch.affect?.duration}</p>
+        </Section>
+
+        <Section title="Trust trajectory">
+          <div className="flex items-center gap-4 mb-4">
+            <div className="text-center">
+              <p className="font-serif text-4xl text-teal">{glitch.trust?.before}</p>
+              <p className="text-xs text-warm-dim mt-1">Before</p>
+            </div>
+            <div className="text-2xl text-warm-dim">→</div>
+            <div className="text-center">
+              <p className="font-serif text-4xl text-coral">{glitch.trust?.after}</p>
+              <p className="text-xs text-warm-dim mt-1">After</p>
+            </div>
+          </div>
+          <p className="mb-2"><strong>Trajectory:</strong> {glitch.trust?.trajectory}</p>
+          <p className="mb-2"><strong>Recovery:</strong> {glitch.trust?.recovery}</p>
+          <p><strong>Behavioral change:</strong> {glitch.trust?.behavioral_change}</p>
+        </Section>
+
+        <Section title="Why it happened (ethological analysis)">
+          <p className="text-warm-dim text-sm mb-4 italic">
+            Tinbergen&apos;s four questions, adapted for AI agents
+          </p>
+          <div className="space-y-4">
+            <div>
+              <p className="font-semibold text-sm text-coral mb-1">Mechanism (How?)</p>
+              <p>{glitch.ethology?.mechanism}</p>
+            </div>
+            <div>
+              <p className="font-semibold text-sm text-coral mb-1">Development (Ontogeny)</p>
+              <p>{glitch.ethology?.development}</p>
+            </div>
+            <div>
+              <p className="font-semibold text-sm text-coral mb-1">Function (Why?)</p>
+              <p>{glitch.ethology?.function}</p>
+            </div>
+            <div>
+              <p className="font-semibold text-sm text-coral mb-1">Phylogeny (Design lineage)</p>
+              <p>{glitch.ethology?.phylogeny}</p>
+            </div>
+          </div>
+        </Section>
+
+        {glitch.participant_taxonomy?.their_name_for_it && (
+          <Section title="In their own words">
+            <p className="mb-2"><strong>They called it:</strong> &ldquo;{glitch.participant_taxonomy.their_name_for_it}&rdquo;</p>
+            {glitch.participant_taxonomy?.their_causal_model && (
+              <p className="mb-2"><strong>Their theory:</strong> {glitch.participant_taxonomy.their_causal_model}</p>
+            )}
+            <p><strong>Attribution:</strong> {glitch.participant_taxonomy?.attribution}</p>
+          </Section>
+        )}
+
+        <Section title="Stakes">
+          <p className="mb-2"><strong>Domain:</strong> {glitch.stakes?.domain}</p>
+          <p className="mb-2"><strong>Severity:</strong> {glitch.stakes?.severity}</p>
+          <p><strong>Reversible:</strong> {glitch.stakes?.reversible ? "Yes" : "No"}</p>
+        </Section>
+
+        {glitch.quotes && glitch.quotes.length > 0 && (
+          <Section title="Notable quotes">
+            <div className="space-y-4">
+              {glitch.quotes.map((q: string, i: number) => (
+                <blockquote key={i} className="text-lg leading-relaxed">
+                  &ldquo;{q}&rdquo;
+                </blockquote>
+              ))}
+            </div>
+          </Section>
+        )}
 
         {/* Citation */}
-        <div className="mt-10 border border-glitch-border rounded-lg p-6 bg-glitch-surface">
-          <h3 className="font-mono text-sm font-bold text-glitch-text-dim uppercase tracking-wider mb-4">Citation</h3>
-          <p className="text-sm text-glitch-text mb-4 font-mono">
+        <div className="mt-12 bg-warm-light border border-warm-border rounded-2xl p-8">
+          <h3 className="font-serif text-xl mb-4">Cite this glitch</h3>
+          <p className="text-sm text-warm-dim mb-4 font-mono leading-relaxed">
             Trust.Fail Contributors ({glitch.interview_date?.split("-")[0] || "2026"}).
             Trust Glitch Report: {glitch.glitch_id}. Trust.Fail Database.
             https://trust.fail/glitch/{glitch.glitch_id}
           </p>
-          <details className="mt-3">
-            <summary className="text-xs font-mono text-glitch-text-dim cursor-pointer hover:text-glitch-accent">BibTeX</summary>
-            <pre className="mt-2 text-xs font-mono text-glitch-code bg-glitch-bg rounded p-3 overflow-x-auto">{bibtex}</pre>
+          <details>
+            <summary className="text-sm text-coral cursor-pointer hover:text-coral-dark font-medium">Show BibTeX</summary>
+            <pre className="mt-3 text-xs font-mono bg-white rounded-lg p-4 overflow-x-auto border border-warm-border">{bibtex}</pre>
           </details>
         </div>
 
-        {/* Downloads */}
+        {/* Download */}
         <div className="mt-6 flex gap-3">
           <a
-            href={yamlDownloadUrl}
-            download={`${glitch.glitch_id}.yaml`}
-            className="px-4 py-2 border border-glitch-border rounded text-sm font-mono text-glitch-text-dim hover:text-glitch-text hover:border-glitch-accent/50 transition-all"
-          >
-            Download YAML
-          </a>
-          <a
-            href={jsonDownloadUrl}
+            href={`data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(glitch, null, 2))}`}
             download={`${glitch.glitch_id}.json`}
-            className="px-4 py-2 border border-glitch-border rounded text-sm font-mono text-glitch-text-dim hover:text-glitch-text hover:border-glitch-accent/50 transition-all"
+            className="px-5 py-2 border border-warm-border rounded-full text-sm font-medium text-warm-dim hover:text-warm-dark hover:border-warm-dark transition-all"
           >
             Download JSON
           </a>
         </div>
-      </div>
+      </article>
     </div>
   );
 }
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="border border-glitch-border rounded-lg p-5 bg-glitch-surface">
-      <h2 className="font-mono text-sm font-bold text-glitch-text-dim uppercase tracking-wider mb-4 pb-2 border-b border-glitch-border">
-        {title}
-      </h2>
-      <div className="space-y-2">{children}</div>
-    </div>
-  );
-}
-
-function Field({ label, value }: { label: string; value?: string }) {
-  if (!value || value === "undefined") return null;
-  return (
-    <div className="flex gap-4 text-sm">
-      <span className="font-mono text-glitch-text-dim w-40 shrink-0">{label}</span>
-      <span className="text-glitch-text">{value}</span>
-    </div>
+    <section className="mb-10">
+      <h2 className="font-serif text-2xl mb-4">{title}</h2>
+      <div className="text-warm-dark leading-relaxed">{children}</div>
+    </section>
   );
 }

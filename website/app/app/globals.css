@@ -2,34 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://use.typekit.net/jvt8wne.css');
+
 body {
-  font-family: 'Lora', Georgia, 'Times New Roman', serif;
-  color: #262626;
-  background: #FFFFFF;
-  -webkit-font-smoothing: antialiased;
-  font-size: 16px;
+  font-family: freight-text-pro, Georgia, 'Times New Roman', serif;
+  color: #000;
+  background: #F8F4EE;
+  font-size: 14px;
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-.font-sans {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif;
-}
+a { color: #548A2F; text-decoration: none; }
+a:hover { color: #3D6B1E; }
 
-.font-mono {
-  font-family: 'IBM Plex Mono', Menlo, Consolas, monospace;
-}
-
-/* Pudding-style story card: thumbnail with text below */
-.story-card {
-  transition: opacity 0.2s ease;
-}
-.story-card:hover {
-  opacity: 0.85;
-}
-
-/* Pudding uses very minimal selection */
-::selection {
-  background: rgba(38, 38, 38, 0.1);
-}
-
-html { scroll-behavior: smooth; }
+::selection { background: rgba(84, 138, 47, 0.15); }

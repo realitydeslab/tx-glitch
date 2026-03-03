@@ -1,7 +1,7 @@
 import { getGlitches } from "@/lib/glitches";
 import { BrowseClient } from "./BrowseClient";
 
-export const metadata = { title: "Browse Glitches — Trust.Fail" };
+export const metadata = { title: "Browse — Trust.Fail" };
 
 export default async function BrowsePage() {
   const glitches = await getGlitches();
@@ -11,16 +11,10 @@ export default async function BrowsePage() {
   const emotions = [...new Set(glitches.map(g => g.affect?.primary_emotion).filter(Boolean))] as string[];
 
   return (
-    <div className="max-w-[1080px] mx-auto px-5 py-16">
-      <h1 className="font-sans font-semibold text-3xl mb-2">Browse Glitches</h1>
-      <p className="font-mono text-sm text-pudding-muted mb-10">{glitches.length} trust experiences documented</p>
-      <BrowseClient
-        glitches={glitches}
-        glitchTypes={glitchTypes}
-        aiSystems={aiSystems}
-        trajectories={trajectories}
-        emotions={emotions}
-      />
+    <div className="py-8">
+      <h1 className="font-heading text-[28px] text-af-heading mb-1">Browse Glitches</h1>
+      <p className="text-[13px] text-af-meta mb-6">{glitches.length} reports</p>
+      <BrowseClient glitches={glitches} glitchTypes={glitchTypes} aiSystems={aiSystems} trajectories={trajectories} emotions={emotions} />
     </div>
   );
 }

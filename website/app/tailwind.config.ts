@@ -9,23 +9,22 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Pudding uses pure white bg, near-black text
-        "pudding-bg": "#FFFFFF",
-        "pudding-text": "#262626",
-        "pudding-muted": "#999999",
-        "pudding-border": "#EBEBEB",
-        // Trust.Fail accent
+        "af-bg": "#F8F4EE",
+        "af-card": "#FFFFFF",
+        "af-text": "#000000",
+        "af-heading": "#424242",
+        "af-meta": "#767676",
+        "af-border": "#E0DAD1",
+        "af-link": "#548A2F",
+        "af-link-hover": "#3D6B1E",
+        "af-accent": "#548A2F",
         coral: "#E85D75",
         teal: "#2EC4B6",
       },
       fontFamily: {
-        serif: ["Lora", "Georgia", "Times New Roman", "serif"],
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Helvetica", "Arial", "sans-serif"],
+        heading: ["freight-sans-pro", "Frutiger", "Calibri", "Gill Sans", "Helvetica Neue", "Helvetica", "Arial", "sans-serif"],
+        body: ["freight-text-pro", "Georgia", "Times New Roman", "serif"],
         mono: ["IBM Plex Mono", "Menlo", "Consolas", "monospace"],
-      },
-      fontSize: {
-        "story-title": ["1.75rem", { lineHeight: "1.2", fontWeight: "600" }],
-        "story-desc": ["0.875rem", { lineHeight: "1.4" }],
       },
     },
   },

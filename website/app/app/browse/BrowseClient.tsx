@@ -4,56 +4,41 @@ import { useState, useMemo } from "react";
 import { Glitch, getGlitchTypeName } from "@/lib/glitch-types";
 import { GlitchCard } from "@/components/GlitchCard";
 
-interface Props {
-  glitches: Glitch[];
-  glitchTypes: string[];
-  aiSystems: string[];
-  trajectories: string[];
-  emotions: string[];
-}
+interface Props { glitches: Glitch[]; glitchTypes: string[]; aiSystems: string[]; trajectories: string[]; emotions: string[]; }
 
-export function BrowseClient({ glitches, glitchTypes, aiSystems, trajectories, emotions }: Props) {
+export function BrowseClient({ glitches, glitchTypes, aiSystems }: Props) {
   const [search, setSearch] = useState("");
   const [filterType, setFilterType] = useState("");
+  const [filterSystem, setFilterSystem] = useState("");
 
   const filtered = useMemo(() => {
     return glitches.filter((g) => {
       if (filterType && g.glitch_type !== filterType) return false;
+      if (filterSystem && g.system?.name !== filterSystem) return false;
       if (search && !JSON.stringify(g).toLowerCase().includes(search.toLowerCase())) return false;
       return true;
     });
-  }, [glitches, search, filterType]);
+  }, [glitches, search, filterType, filterSystem]);
+
+  const sel = "font-heading text-[13px] border border-af-border rounded px-2 py-1 bg-af-card focus:outline-none";
 
   return (
     <>
-      <div className="flex items-center gap-4 mb-8 border-b border-pudding-border pb-4">
-        <input
-          type="text"
-          placeholder="Find a story..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="font-mono text-sm border border-pudding-border rounded px-3 py-1.5 w-64 focus:outline-none focus:border-pudding-text"
-        />
-        <select
-          value={filterType}
-          onChange={(e) => setFilterType(e.target.value)}
-          className="font-mono text-sm border border-pudding-border rounded px-3 py-1.5 focus:outline-none focus:border-pudding-text"
-        >
-          <option value="">All</option>
-          {glitchTypes.map((t) => (<option key={t} value={t}>{getGlitchTypeName(t)}</option>))}
+      <div className="flex items-center gap-3 mb-6 pb-3 border-b border-af-border">
+        <input type="text" placeholder="Search..." value={search} onChange={e => setSearch(e.target.value)}
+          className={`${sel} w-48`} />
+        <select value={filterType} onChange={e => setFilterType(e.target.value)} className={sel}>
+          <option value="">All Types</option>
+          {glitchTypes.map(t => <option key={t} value={t}>{t} — {getGlitchTypeName(t)}</option>)}
         </select>
-        <span className="font-mono text-xs text-pudding-muted ml-auto">{filtered.length} stories</span>
+        <select value={filterSystem} onChange={e => setFilterSystem(e.target.value)} className={sel}>
+          <option value="">All Systems</option>
+          {aiSystems.map(s => <option key={s} value={s}>{s}</option>)}
+        </select>
+        <span className="text-[12px] text-af-meta ml-auto">{filtered.length} results</span>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12">
-        {filtered.map((glitch) => (
-          <GlitchCard key={glitch.glitch_id} glitch={glitch} />
-        ))}
-      </div>
-
-      {filtered.length === 0 && (
-        <p className="text-center py-20 font-serif text-pudding-muted">No stories found.</p>
-      )}
+      {filtered.map(g => <GlitchCard key={g.glitch_id} glitch={g} />)}
+      {filtered.length === 0 && <p className="text-center py-12 text-af-meta">No results.</p>}
     </>
   );
 }

@@ -3,120 +3,103 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 
 export async function generateStaticParams() {
-  const glitches = await getGlitches();
-  return glitches.map((g) => ({ id: g.glitch_id }));
+  return (await getGlitches()).map(g => ({ id: g.glitch_id }));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const glitch = await getGlitch(id);
-  if (!glitch) return { title: "Not Found — Trust.Fail" };
-  return { title: `${glitch.glitch_id} — Trust.Fail` };
+  const g = await getGlitch(id);
+  return { title: g ? `${g.glitch_id} — Trust.Fail` : "Not Found" };
 }
 
-const thumbColors: Record<string, string> = {
-  GH: "#F87171", GU: "#C084FC", GB: "#FB923C", GE: "#F472B6", GP: "#FBBF24",
-  GR: "#60A5FA", GA: "#34D399", GC: "#F59E0B", GS: "#22D3EE", GO: "#94A3B8",
+const typeColors: Record<string, string> = {
+  GH: "#E53E3E", GU: "#805AD5", GB: "#DD6B20", GE: "#D53F8C", GP: "#D69E2E",
+  GR: "#3182CE", GA: "#38A169", GC: "#C05621", GS: "#0891B2", GO: "#718096",
 };
 
-export default async function GlitchDetailPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const glitch = await getGlitch(id);
-  if (!glitch) notFound();
+  const g = await getGlitch(id);
+  if (!g) notFound();
 
-  const typeCode = glitch.glitch_type || "??";
+  const typeCode = g.glitch_type || "??";
   const typeName = getGlitchTypeName(typeCode);
-  const color = thumbColors[typeCode] || "#D1D5DB";
+  const color = typeColors[typeCode] || "#718096";
 
   return (
-    <article className="max-w-[680px] mx-auto px-5 py-12">
-      <Link href="/browse" className="font-mono text-xs text-pudding-muted hover:text-pudding-text transition-colors mb-8 inline-block">
-        ← back to all stories
-      </Link>
+    <article className="py-8">
+      <Link href="/browse" className="text-[12px] text-af-meta hover:text-af-text no-underline">← All reports</Link>
 
-      {/* Colored header block */}
-      <div
-        className="aspect-[16/7] rounded-sm mb-8 flex items-center justify-center"
-        style={{ backgroundColor: color }}
-      >
-        <div className="text-center text-white/90">
-          <p className="font-mono text-sm mb-2">{typeCode}</p>
-          <h1 className="font-sans font-semibold text-3xl md:text-4xl px-8 leading-tight">
-            {typeName.toLowerCase()}
-          </h1>
+      {/* Title area */}
+      <div className="mt-4 mb-6 pb-4 border-b border-af-border">
+        <div className="flex items-center gap-2 mb-2">
+          <span className="font-heading font-medium px-1.5 py-0.5 rounded text-white text-[11px]" style={{ backgroundColor: color }}>{typeCode}</span>
+          <span className="font-heading text-[13px] text-af-meta">{typeName}</span>
+        </div>
+        <h1 className="font-heading text-[26px] text-af-text leading-snug mb-3">
+          {g.event?.deviation || g.glitch_id}
+        </h1>
+        <div className="text-[12px] text-af-meta flex items-center gap-2 flex-wrap">
+          <span>{g.system?.name}</span> · <span>{g.interview_date}</span> · <span>Trust: {g.trust?.before} → {g.trust?.after}</span>
         </div>
       </div>
 
-      {/* Meta */}
-      <div className="flex items-center gap-3 font-mono text-xs text-pudding-muted mb-8 pb-4 border-b border-pudding-border">
-        <span>{glitch.system?.name}</span>
-        <span>·</span>
-        <span>{glitch.interview_date}</span>
-        <span>·</span>
-        <span>Trust: {glitch.trust?.before} → {glitch.trust?.after}</span>
-      </div>
-
-      {/* Lead quote */}
-      {glitch.quotes?.[0] && (
-        <blockquote className="font-serif text-xl italic text-pudding-text leading-relaxed mb-10 pl-5 border-l-2 border-pudding-border">
-          &ldquo;{glitch.quotes[0]}&rdquo;
+      {/* Quote */}
+      {g.quotes?.[0] && (
+        <blockquote className="text-[16px] italic text-af-heading leading-relaxed mb-6 pl-4 border-l-3 border-af-border">
+          &ldquo;{g.quotes[0]}&rdquo;
         </blockquote>
       )}
 
-      {/* Body — Pudding article style: serif body text */}
-      <Section title="What happened">
-        <P>{glitch.event?.deviation}</P>
-        <P>The participant was {glitch.event?.task}. They expected {glitch.event?.human_expectation?.toLowerCase()}. Instead, {glitch.event?.ai_behavior?.toLowerCase()}.</P>
-        {glitch.event?.setting && <P><em>Setting: {glitch.event.setting}</em></P>}
-      </Section>
-
-      <Section title="How it felt">
-        <P>
-          Primary emotion: <strong>{glitch.affect?.primary_emotion}</strong>
-          {glitch.affect?.intensity && <> ({glitch.affect.intensity} intensity)</>}.
-          {glitch.affect?.secondary_emotions?.length > 0 && <> Also felt: {glitch.affect.secondary_emotions.join(", ")}.</>}
-          {glitch.affect?.duration && <> Lasted {glitch.affect.duration}.</>}
-        </P>
-      </Section>
-
-      <Section title="Trust trajectory">
-        <div className="flex items-center gap-8 my-6">
-          <div className="text-center">
-            <p className="font-sans text-4xl font-semibold" style={{ color: "#2EC4B6" }}>{glitch.trust?.before}</p>
-            <p className="font-mono text-xs text-pudding-muted mt-1">before</p>
-          </div>
-          <span className="font-sans text-2xl text-pudding-muted">→</span>
-          <div className="text-center">
-            <p className="font-sans text-4xl font-semibold" style={{ color: "#E85D75" }}>{glitch.trust?.after}</p>
-            <p className="font-mono text-xs text-pudding-muted mt-1">after</p>
-          </div>
-        </div>
-        <P>Trajectory: {glitch.trust?.trajectory}. Recovery: {glitch.trust?.recovery}. {glitch.trust?.behavioral_change && <>Behavioral change: {glitch.trust.behavioral_change}.</>}</P>
-      </Section>
-
-      <Section title="Ethological analysis">
-        <p className="font-mono text-xs text-pudding-muted mb-4">Tinbergen&apos;s four questions, adapted for AI agents</p>
-        {glitch.ethology?.mechanism && <SubField label="Mechanism" value={glitch.ethology.mechanism} />}
-        {glitch.ethology?.development && <SubField label="Development" value={glitch.ethology.development} />}
-        {glitch.ethology?.function && <SubField label="Function" value={glitch.ethology.function} />}
-        {glitch.ethology?.phylogeny && <SubField label="Phylogeny" value={glitch.ethology.phylogeny} />}
-      </Section>
-
-      {glitch.participant_taxonomy?.their_name_for_it && (
-        <Section title="In their words">
-          <P>They called it: &ldquo;{glitch.participant_taxonomy.their_name_for_it}&rdquo;</P>
-          {glitch.participant_taxonomy?.their_causal_model && <P>Their theory: {glitch.participant_taxonomy.their_causal_model}</P>}
+      {/* Body — AF-style long-form post content */}
+      <div className="text-[15px] leading-[1.7] text-af-text space-y-6">
+        <Section title="What happened">
+          <p>{g.event?.deviation}</p>
+          {g.event?.task && <p>The participant was {g.event.task}. They expected {g.event?.human_expectation?.toLowerCase()}. Instead, {g.event?.ai_behavior?.toLowerCase()}.</p>}
+          {g.event?.setting && <p className="italic text-af-meta">Setting: {g.event.setting}</p>}
         </Section>
-      )}
+
+        <Section title="How it felt">
+          <p>Primary emotion: <strong>{g.affect?.primary_emotion}</strong>{g.affect?.intensity && ` (${g.affect.intensity})`}.
+          {g.affect?.secondary_emotions?.length > 0 && ` Also: ${g.affect.secondary_emotions.join(", ")}.`}
+          {g.affect?.duration && ` Duration: ${g.affect.duration}.`}</p>
+        </Section>
+
+        <Section title="Trust trajectory">
+          <div className="flex items-baseline gap-4 my-3 font-heading">
+            <span className="text-[32px] font-medium" style={{ color: "#38A169" }}>{g.trust?.before}</span>
+            <span className="text-af-meta text-[18px]">→</span>
+            <span className="text-[32px] font-medium" style={{ color: "#E53E3E" }}>{g.trust?.after}</span>
+          </div>
+          <p>Trajectory: {g.trust?.trajectory}. Recovery: {g.trust?.recovery}. {g.trust?.behavioral_change && `Change: ${g.trust.behavioral_change}.`}</p>
+        </Section>
+
+        <Section title="Ethological analysis">
+          <p className="text-[12px] text-af-meta italic mb-2">Tinbergen&apos;s four questions, adapted for AI agents</p>
+          {g.ethology?.mechanism && <Sub label="Mechanism" value={g.ethology.mechanism} />}
+          {g.ethology?.development && <Sub label="Development" value={g.ethology.development} />}
+          {g.ethology?.function && <Sub label="Function" value={g.ethology.function} />}
+          {g.ethology?.phylogeny && <Sub label="Phylogeny" value={g.ethology.phylogeny} />}
+        </Section>
+
+        {g.participant_taxonomy?.their_name_for_it && (
+          <Section title="Participant's taxonomy">
+            <p>They called it: &ldquo;{g.participant_taxonomy.their_name_for_it}&rdquo;</p>
+            {g.participant_taxonomy?.their_causal_model && <p>Their theory: {g.participant_taxonomy.their_causal_model}</p>}
+          </Section>
+        )}
+
+        <Section title="Stakes">
+          <p>Domain: {g.stakes?.domain}. Severity: {g.stakes?.severity}. Reversible: {g.stakes?.reversible ? "Yes" : "No"}.</p>
+        </Section>
+      </div>
 
       {/* Citation */}
-      <div className="mt-16 pt-8 border-t border-pudding-border">
-        <p className="font-mono text-xs text-pudding-muted mb-3">cite this story</p>
-        <p className="font-mono text-xs text-pudding-muted leading-relaxed">
-          Trust.Fail Contributors ({glitch.interview_date?.split("-")[0] || "2026"}).
-          Trust Glitch Report: {glitch.glitch_id}. Trust.Fail Database.
-          https://trust.fail/glitch/{glitch.glitch_id}
-        </p>
+      <div className="mt-10 pt-4 border-t border-af-border">
+        <p className="text-[12px] text-af-meta mb-2">Cite this report</p>
+        <pre className="text-[11px] font-mono text-af-meta bg-af-card border border-af-border rounded p-3 overflow-x-auto">{`Trust.Fail Contributors (${g.interview_date?.split("-")[0] || "2026"}).
+Trust Glitch Report: ${g.glitch_id}. Trust.Fail Database.
+https://trust.fail/glitch/${g.glitch_id}`}</pre>
       </div>
     </article>
   );
@@ -124,22 +107,18 @@ export default async function GlitchDetailPage({ params }: { params: Promise<{ i
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <section className="mb-10">
-      <h2 className="font-sans font-semibold text-xl mb-4">{title}</h2>
-      <div>{children}</div>
-    </section>
+    <div>
+      <h2 className="font-heading text-[18px] text-af-heading mb-2 font-medium">{title}</h2>
+      {children}
+    </div>
   );
 }
 
-function P({ children }: { children: React.ReactNode }) {
-  return <p className="font-serif text-base leading-relaxed text-pudding-text mb-4">{children}</p>;
-}
-
-function SubField({ label, value }: { label: string; value: string }) {
+function Sub({ label, value }: { label: string; value: string }) {
   return (
-    <div className="mb-4">
-      <p className="font-mono text-xs text-pudding-muted uppercase tracking-wider mb-1">{label}</p>
-      <p className="font-serif text-base leading-relaxed">{value}</p>
+    <div className="mb-3 pl-3 border-l-2 border-af-border">
+      <p className="text-[11px] font-heading text-af-meta uppercase tracking-wider mb-0.5">{label}</p>
+      <p>{value}</p>
     </div>
   );
 }

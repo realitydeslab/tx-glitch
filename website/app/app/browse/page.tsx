@@ -11,21 +11,16 @@ export default async function BrowsePage() {
   const emotions = [...new Set(glitches.map(g => g.affect?.primary_emotion).filter(Boolean))] as string[];
 
   return (
-    <div className="pt-14">
-      <div className="max-w-6xl mx-auto px-6 py-16">
-        <p className="text-sm font-mono text-text-muted uppercase tracking-widest mb-2">Database</p>
-        <h1 className="font-serif text-4xl md:text-5xl font-bold mb-3">Browse Glitches</h1>
-        <p className="text-text-secondary text-lg mb-12">
-          {glitches.length} trust experiences documented and growing.
-        </p>
-        <BrowseClient
-          glitches={glitches}
-          glitchTypes={glitchTypes}
-          aiSystems={aiSystems}
-          trajectories={trajectories}
-          emotions={emotions}
-        />
-      </div>
+    <div className="max-w-[1080px] mx-auto px-5 py-16">
+      <h1 className="font-sans font-semibold text-3xl mb-2">Browse Glitches</h1>
+      <p className="font-mono text-sm text-pudding-muted mb-10">{glitches.length} trust experiences documented</p>
+      <BrowseClient
+        glitches={glitches}
+        glitchTypes={glitchTypes}
+        aiSystems={aiSystems}
+        trajectories={trajectories}
+        emotions={emotions}
+      />
     </div>
   );
 }

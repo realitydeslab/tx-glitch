@@ -1,66 +1,42 @@
 import Link from "next/link";
 import { Glitch, getGlitchTypeName } from "@/lib/glitch-types";
 
-// Pudding-style: each glitch type gets a bold, saturated background color
-const cardColors: Record<string, string> = {
-  GH: "bg-card-red",
-  GU: "bg-card-purple",
-  GB: "bg-card-orange",
-  GE: "bg-card-pink",
-  GP: "bg-card-yellow",
-  GR: "bg-card-blue",
-  GA: "bg-card-emerald",
-  GC: "bg-card-amber",
-  GS: "bg-card-cyan",
-  GO: "bg-card-slate",
-};
-
-const cardTextColors: Record<string, string> = {
-  GH: "text-red-950",
-  GU: "text-purple-950",
-  GB: "text-orange-950",
-  GE: "text-pink-950",
-  GP: "text-yellow-950",
-  GR: "text-blue-950",
-  GA: "text-emerald-950",
-  GC: "text-amber-950",
-  GS: "text-cyan-950",
-  GO: "text-slate-950",
+// Each type gets a distinct solid color (like Pudding story thumbnails)
+const thumbColors: Record<string, string> = {
+  GH: "#F87171", GU: "#C084FC", GB: "#FB923C", GE: "#F472B6", GP: "#FBBF24",
+  GR: "#60A5FA", GA: "#34D399", GC: "#F59E0B", GS: "#22D3EE", GO: "#94A3B8",
 };
 
 export function GlitchCard({ glitch }: { glitch: Glitch }) {
   const typeCode = glitch.glitch_type || "??";
   const typeName = getGlitchTypeName(typeCode);
-  const bg = cardColors[typeCode] || "bg-gray-300";
-  const textColor = cardTextColors[typeCode] || "text-gray-900";
-  const summary = glitch.event?.deviation || glitch.event?.ai_behavior || "No summary";
-  const quote = glitch.quotes?.[0];
+  const color = thumbColors[typeCode] || "#D1D5DB";
+  const summary = glitch.event?.deviation || glitch.event?.ai_behavior || "";
 
   return (
-    <Link href={`/glitch/${glitch.glitch_id}`}>
-      <div className={`story-card rounded-2xl p-7 min-h-[280px] flex flex-col justify-between cursor-pointer ${bg}`}>
-        {/* Top: type label */}
-        <div>
-          <div className={`text-xs font-mono font-semibold uppercase tracking-widest mb-3 opacity-70 ${textColor}`}>
-            {typeCode} · {typeName}
-          </div>
-          <p className={`text-lg font-semibold leading-snug mb-3 line-clamp-3 ${textColor}`}>
-            {summary}
-          </p>
-          {quote && (
-            <p className={`text-sm leading-relaxed opacity-80 line-clamp-2 italic ${textColor}`}>
-              &ldquo;{quote}&rdquo;
-            </p>
-          )}
-        </div>
-        {/* Bottom: system + trust */}
-        <div className={`flex items-center justify-between mt-5 pt-4 border-t border-black/10 ${textColor}`}>
-          <span className="text-sm font-medium">{glitch.system?.name || "Unknown AI"}</span>
-          <span className="font-mono text-sm font-bold">
-            {glitch.trust?.before ?? "?"} → {glitch.trust?.after ?? "?"}
-          </span>
-        </div>
+    <Link href={`/glitch/${glitch.glitch_id}`} className="story-card block">
+      {/* Color thumbnail — Pudding style */}
+      <div
+        className="aspect-[4/3] rounded-sm mb-3 flex items-center justify-center"
+        style={{ backgroundColor: color }}
+      >
+        <span className="font-sans text-white/90 font-semibold text-5xl tracking-tight">
+          {typeCode}
+        </span>
       </div>
+      {/* Meta line */}
+      <div className="flex items-center gap-2 mb-1">
+        <span className="font-mono text-xs text-pudding-muted">#{glitch.glitch_id.replace("TXG-", "")}</span>
+        <span className="font-mono text-xs text-pudding-muted">{glitch.interview_date?.slice(0, 7)}</span>
+      </div>
+      {/* Title */}
+      <h3 className="font-sans font-semibold text-story-title text-pudding-text mb-1 leading-tight">
+        {typeName.toLowerCase()}
+      </h3>
+      {/* Description */}
+      <p className="font-mono text-story-desc text-pudding-muted line-clamp-2">
+        {summary}
+      </p>
     </Link>
   );
 }

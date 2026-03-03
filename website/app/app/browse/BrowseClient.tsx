@@ -33,28 +33,25 @@ export function BrowseClient({ glitches, glitchTypes, aiSystems, trajectories, e
     });
   }, [glitches, search, filterType, filterSystem, filterTrajectory, filterEmotion]);
 
-  const selectClass =
-    "bg-white border border-warm-border rounded-full px-4 py-2 text-sm text-warm-dark focus:outline-none focus:border-coral/50 appearance-none";
+  const selectClass = "bg-white border border-border rounded-lg px-3 py-2 text-sm text-text focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral";
 
   return (
     <>
-      <div className="mb-10 space-y-4">
+      <div className="mb-8 space-y-4">
         <input
           type="text"
-          placeholder="Search all glitches..."
+          placeholder="Search glitches..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full bg-white border border-warm-border rounded-full px-6 py-3 text-warm-dark placeholder:text-warm-dim focus:outline-none focus:border-coral/50"
+          className="w-full bg-white border border-border rounded-xl px-5 py-3 text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-coral/30 focus:border-coral"
         />
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2">
           <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className={selectClass}>
             <option value="">All Types</option>
-            {glitchTypes.map((t) => (
-              <option key={t} value={t}>{t} — {getGlitchTypeName(t)}</option>
-            ))}
+            {glitchTypes.map((t) => (<option key={t} value={t}>{t} — {getGlitchTypeName(t)}</option>))}
           </select>
           <select value={filterSystem} onChange={(e) => setFilterSystem(e.target.value)} className={selectClass}>
-            <option value="">All AI Systems</option>
+            <option value="">All Systems</option>
             {aiSystems.map((s) => (<option key={s} value={s}>{s}</option>))}
           </select>
           <select value={filterTrajectory} onChange={(e) => setFilterTrajectory(e.target.value)} className={selectClass}>
@@ -68,29 +65,27 @@ export function BrowseClient({ glitches, glitchTypes, aiSystems, trajectories, e
           {(filterType || filterSystem || filterTrajectory || filterEmotion || search) && (
             <button
               onClick={() => { setSearch(""); setFilterType(""); setFilterSystem(""); setFilterTrajectory(""); setFilterEmotion(""); }}
-              className="px-4 py-2 text-sm text-coral hover:text-coral-dark font-semibold transition-colors"
+              className="px-3 py-2 text-sm text-coral hover:text-coral-dark font-semibold"
             >
-              Clear all ×
+              Clear ×
             </button>
           )}
         </div>
       </div>
 
-      <p className="text-sm text-warm-dim mb-6">
-        {filtered.length} glitch{filtered.length !== 1 ? "es" : ""} found
+      <p className="text-sm text-text-muted mb-6 font-mono">
+        {filtered.length} glitch{filtered.length !== 1 ? "es" : ""}
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {filtered.map((glitch) => (
           <GlitchCard key={glitch.glitch_id} glitch={glitch} />
         ))}
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-20">
-          <p className="text-2xl mb-2">🔍</p>
-          <p className="font-serif text-xl text-warm-dim">No glitches match your filters</p>
-          <p className="text-sm text-warm-dim mt-2">Try broadening your search</p>
+        <div className="text-center py-24">
+          <p className="font-serif text-2xl text-text-muted">No glitches match your filters</p>
         </div>
       )}
     </>

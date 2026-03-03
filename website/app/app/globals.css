@@ -2,60 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --cream: #FFF8F0;
-  --warm-light: #FFF1E6;
-  --warm-dark: #2D2926;
-  --warm-dim: #8B7E74;
-  --warm-border: #E8DDD3;
-  --coral: #E85D75;
-  --coral-dark: #D14A62;
-  --teal: #2EC4B6;
-  --teal-dark: #1FA396;
-  --yellow: #FFD166;
-  --purple: #9B72CF;
-}
-
 body {
-  font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
-  color: var(--warm-dark);
-  background: var(--cream);
+  font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+  color: #09090B;
+  background: #FAFAFA;
   -webkit-font-smoothing: antialiased;
 }
 
 .font-serif {
-  font-family: 'DM Serif Display', Georgia, serif;
+  font-family: 'Libre Bodoni', Georgia, serif;
 }
 
 .font-mono {
   font-family: 'JetBrains Mono', monospace;
 }
 
-/* Story card hover */
+/* Pudding-style story card — bold color block with hover lift */
 .story-card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
 }
 .story-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(45, 41, 38, 0.08);
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
-/* Trust delta visualization */
-.trust-arrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-/* Blockquote styling */
-blockquote {
-  border-left: 3px solid var(--coral);
-  padding-left: 1.25rem;
-  font-style: italic;
-  color: var(--warm-dim);
-}
+/* Smooth scroll */
+html { scroll-behavior: smooth; }
 
 /* Selection */
 ::selection {
-  background: rgba(232, 93, 117, 0.15);
+  background: rgba(232, 93, 117, 0.2);
+}
+
+/* Scroll-triggered reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Drop cap for editorial sections */
+.drop-cap::first-letter {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  float: left;
+  font-size: 3.5em;
+  line-height: 0.8;
+  padding-right: 0.1em;
+  color: #E85D75;
+  font-weight: 700;
+}
+
+/* Pull quote */
+.pull-quote {
+  font-family: 'Libre Bodoni', Georgia, serif;
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-style: italic;
+  color: #52525B;
+  border-left: 4px solid #E85D75;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
 }

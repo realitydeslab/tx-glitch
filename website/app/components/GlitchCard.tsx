@@ -1,54 +1,64 @@
 import Link from "next/link";
 import { Glitch, getGlitchTypeName } from "@/lib/glitch-types";
 
-const typeEmoji: Record<string, string> = {
-  GH: "🫣", GU: "😳", GB: "💔", GE: "😬", GP: "📉",
-  GR: "🚫", GA: "🤖", GC: "🔀", GS: "✨", GO: "🤷",
+// Pudding-style: each glitch type gets a bold, saturated background color
+const cardColors: Record<string, string> = {
+  GH: "bg-card-red",
+  GU: "bg-card-purple",
+  GB: "bg-card-orange",
+  GE: "bg-card-pink",
+  GP: "bg-card-yellow",
+  GR: "bg-card-blue",
+  GA: "bg-card-emerald",
+  GC: "bg-card-amber",
+  GS: "bg-card-cyan",
+  GO: "bg-card-slate",
 };
 
-const typeBg: Record<string, string> = {
-  GH: "bg-red-50 border-red-200",
-  GU: "bg-purple-50 border-purple-200",
-  GB: "bg-orange-50 border-orange-200",
-  GE: "bg-pink-50 border-pink-200",
-  GP: "bg-yellow-50 border-yellow-200",
-  GR: "bg-blue-50 border-blue-200",
-  GA: "bg-emerald-50 border-emerald-200",
-  GC: "bg-amber-50 border-amber-200",
-  GS: "bg-cyan-50 border-cyan-200",
-  GO: "bg-slate-50 border-slate-200",
+const cardTextColors: Record<string, string> = {
+  GH: "text-red-950",
+  GU: "text-purple-950",
+  GB: "text-orange-950",
+  GE: "text-pink-950",
+  GP: "text-yellow-950",
+  GR: "text-blue-950",
+  GA: "text-emerald-950",
+  GC: "text-amber-950",
+  GS: "text-cyan-950",
+  GO: "text-slate-950",
 };
 
 export function GlitchCard({ glitch }: { glitch: Glitch }) {
   const typeCode = glitch.glitch_type || "??";
   const typeName = getGlitchTypeName(typeCode);
-  const emoji = typeEmoji[typeCode] || "❓";
-  const cardBg = typeBg[typeCode] || "bg-white border-warm-border";
-  const trustBefore = glitch.trust?.before ?? "?";
-  const trustAfter = glitch.trust?.after ?? "?";
-  const summary = glitch.event?.deviation || glitch.event?.ai_behavior || "No summary available";
+  const bg = cardColors[typeCode] || "bg-gray-300";
+  const textColor = cardTextColors[typeCode] || "text-gray-900";
+  const summary = glitch.event?.deviation || glitch.event?.ai_behavior || "No summary";
   const quote = glitch.quotes?.[0];
 
   return (
     <Link href={`/glitch/${glitch.glitch_id}`}>
-      <div className={`story-card border rounded-2xl p-6 cursor-pointer ${cardBg}`}>
-        <div className="flex items-center gap-2 mb-3">
-          <span className="text-2xl">{emoji}</span>
-          <span className="text-sm font-semibold text-warm-dark">{typeName}</span>
-        </div>
-        <p className="text-warm-dark leading-relaxed mb-4 line-clamp-3">{summary}</p>
-        {quote && (
-          <blockquote className="text-sm mb-4 line-clamp-2">
-            &ldquo;{quote}&rdquo;
-          </blockquote>
-        )}
-        <div className="flex items-center justify-between text-sm">
-          <span className="text-warm-dim">{glitch.system?.name || "Unknown AI"}</span>
-          <div className="trust-arrow font-mono font-medium">
-            <span className="text-teal">{trustBefore}</span>
-            <span className="text-warm-dim">→</span>
-            <span className="text-coral">{trustAfter}</span>
+      <div className={`story-card rounded-2xl p-7 min-h-[280px] flex flex-col justify-between cursor-pointer ${bg}`}>
+        {/* Top: type label */}
+        <div>
+          <div className={`text-xs font-mono font-semibold uppercase tracking-widest mb-3 opacity-70 ${textColor}`}>
+            {typeCode} · {typeName}
           </div>
+          <p className={`text-lg font-semibold leading-snug mb-3 line-clamp-3 ${textColor}`}>
+            {summary}
+          </p>
+          {quote && (
+            <p className={`text-sm leading-relaxed opacity-80 line-clamp-2 italic ${textColor}`}>
+              &ldquo;{quote}&rdquo;
+            </p>
+          )}
+        </div>
+        {/* Bottom: system + trust */}
+        <div className={`flex items-center justify-between mt-5 pt-4 border-t border-black/10 ${textColor}`}>
+          <span className="text-sm font-medium">{glitch.system?.name || "Unknown AI"}</span>
+          <span className="font-mono text-sm font-bold">
+            {glitch.trust?.before ?? "?"} → {glitch.trust?.after ?? "?"}
+          </span>
         </div>
       </div>
     </Link>

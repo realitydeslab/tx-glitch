@@ -1,0 +1,50 @@
+glitch_id: TXG-0009
+glitch_type: GC
+source: observed
+source_url: https://dev.to/dev_tips/copilot-is-gaslighting-developers-and-were-all-pretending-its-fine-51j9
+interview_date: "2025-11-04"
+participant_id: devto-devtips
+system:
+  name: GitHub Copilot
+  version: "2025"
+  developer: GitHub/OpenAI
+  modality: code_completion
+  context: software_development
+event:
+  setting: "IDE, professional software development workflow"
+  task: "Writing code with AI assistance for production software"
+  ai_behavior: "Generates confident code suggestions that introduce subtle bugs, uses deprecated APIs, suggests patterns that look correct but fail at edge cases, and when code fails, suggests 'fixes' that introduce new bugs"
+  human_expectation: "Reliable code suggestions that follow current best practices and handle edge cases"
+  deviation: "Copilot creates a cycle of confident suggestion → failure → confident fix → new failure, eroding developer judgment over time as they increasingly defer to the AI's confidence."
+affect:
+  primary_emotion: frustration
+  secondary_emotions: [self-doubt, confusion, dependency]
+  intensity: moderate
+  duration: weeks
+trust:
+  before: 7
+  after: 4
+  trajectory: erosion
+  recovery: partial
+  behavioral_change: "More careful code review, reduced auto-acceptance of suggestions, but still using Copilot"
+ethology:
+  mechanism: "Code completion models trained on public repositories reproduce patterns from outdated code, deprecated APIs, and common anti-patterns. High confidence in suggestions doesn't correlate with correctness."
+  development: "Developers gradually shift from verifying every suggestion to accepting them, creating learned helplessness. The trust erosion is slow — each individual suggestion seems plausible."
+  function: "The confident presentation serves the product's engagement metrics but undermines developer skill development and code quality over time."
+  phylogeny: "Code completion has evolved from simple autocomplete (IntelliSense) to full function generation (Copilot) to agentic coding (Cursor), with each step increasing both capability and failure blast radius."
+participant_taxonomy:
+  their_name_for_it: "Copilot is gaslighting developers"
+  their_causal_model: "Copilot's confident-but-wrong suggestions erode developer judgment over time"
+  attribution: systemic
+stakes:
+  domain: software_quality
+  severity: significant
+  reversible: true
+classification:
+  is_trust_glitch: true
+  confidence: 0.93
+quotes:
+  - "Copilot is gaslighting developers and we're all pretending it's fine."
+evidence:
+  verified: true
+  corroboration: "Widely shared article with extensive community discussion. Multiple developers confirmed similar patterns."

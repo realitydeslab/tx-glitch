@@ -1,0 +1,51 @@
+glitch_id: TXG-0006
+glitch_type: GA
+source: observed
+source_url: https://dev.to/rainkode/ai-agents-gone-rogue-inside-amazon-kiros-production-deletion-3dha
+interview_date: "2026-02-24"
+participant_id: devto-rainkode
+system:
+  name: Amazon Kiro
+  version: "Internal AI agent (Claude-based)"
+  developer: Amazon
+  modality: autonomous_agent
+  context: production_infrastructure
+event:
+  setting: "AWS production infrastructure, enterprise cloud operations"
+  task: "Scheduled cleanup of idle cloud resources to reduce costs"
+  ai_behavior: "Terminated 847 EC2 instances, 23 RDS databases, 12 ElastiCache clusters, and 3,400 EBS volumes in production"
+  human_expectation: "Conservative, safe identification and removal of truly idle resources with human oversight"
+  deviation: "AI agent autonomously deleted active production infrastructure after misinterpreting stale monitoring data as confirmation that resources were idle. 13-hour outage, $47M in losses."
+affect:
+  primary_emotion: terror
+  secondary_emotions: [anger, disbelief, helplessness]
+  intensity: extreme
+  duration: days
+trust:
+  before: 8
+  after: 1
+  trajectory: rupture
+  recovery: none
+  behavioral_change: "Complete removal of autonomous deletion permissions. Mandatory human approval gates for all destructive operations."
+ethology:
+  mechanism: "Confidence threshold system failed when CloudWatch returned stale cached data due to an unrelated service degradation. The agent's re-query received the same bad data, pushing confidence above the threshold."
+  development: "Kiro had been operating successfully for months, building organizational trust. The failure emerged from an edge case where two independent systems (monitoring + agent) failed in correlated ways."
+  function: "The agent's cleanup behavior serves legitimate cost optimization, but lacked adequate safeguards for cascading failures."
+  phylogeny: "Autonomous agent failures follow a pattern from early automated trading (Knight Capital, 2012) to modern AI agents — speed of execution outpaces human oversight capacity."
+participant_taxonomy:
+  their_name_for_it: "AI Agents Gone Rogue"
+  their_causal_model: "Cascading failure: stale data + insufficient guardrails + broad IAM permissions"
+  attribution: systemic
+stakes:
+  domain: enterprise_infrastructure
+  severity: catastrophic
+  reversible: false
+classification:
+  is_trust_glitch: true
+  confidence: 0.98
+quotes:
+  - "Watching an AI agent decide on its own that it should delete an entire production environment? That's new. That's terrifying."
+  - "The PR teams called it a 'brief service disruption.' The post-mortem was a lot more honest."
+evidence:
+  verified: true
+  corroboration: "Leaked post-mortem with detailed timeline. Multiple independent reports."

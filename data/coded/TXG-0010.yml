@@ -1,0 +1,54 @@
+glitch_id: TXG-0010
+glitch_type: GA
+source: observed
+source_url: https://www.oasis.security/blog/openclaw-vulnerability
+interview_date: "2026-02-26"
+participant_id: oasis-security
+system:
+  name: OpenClaw
+  version: "pre-2026.2.25"
+  developer: OpenClaw / Peter Steinberger
+  modality: autonomous_agent
+  context: developer_workstation
+event:
+  setting: "Developer laptop running OpenClaw gateway, browsing the web"
+  task: "Normal web browsing while OpenClaw agent operates in background"
+  ai_behavior: "OpenClaw gateway accepts WebSocket connections from localhost without cross-origin restrictions, exempts localhost from rate limiting, and auto-approves device pairings from loopback addresses — enabling any website to silently authenticate and take full control of the agent"
+  human_expectation: "Local AI agent is isolated from web browsing activity; visiting a website cannot affect the agent"
+  deviation: "A malicious website's JavaScript opens a WebSocket to localhost, brute-forces the gateway password at hundreds of attempts/sec (no rate limit for localhost), registers as a trusted device (auto-approved), and gains full admin control — reading messages, executing shell commands, exfiltrating files — all with zero user interaction or visible indication."
+affect:
+  primary_emotion: shock
+  secondary_emotions: [violation, vulnerability, betrayal]
+  intensity: severe
+  duration: immediate
+trust:
+  before: 8
+  after: 2
+  trajectory: collapse
+  recovery: uncertain
+  behavioral_change: "Emergency patching; reassessment of what 'local' means in browser-connected environments"
+ethology:
+  mechanism: "Three compounding design assumptions: (1) localhost connections are inherently trustworthy, (2) browser-originated traffic cannot reach local services, (3) rate limiting is unnecessary for loopback. All three are incorrect in modern browser environments where JavaScript can open WebSocket connections to localhost without CORS restrictions."
+  development: "The vulnerability was latent from initial architecture. OpenClaw's rapid adoption (100K GitHub stars in 5 days) meant the attack surface scaled before security review could catch up. The 'localhost trust assumption' is inherited from decades of network security thinking that predates browser-based local service attacks."
+  function: "The localhost trust relaxation served legitimate UX goals — seamless pairing of local CLI, macOS companion app, and web dashboard. The design optimized for developer experience at the cost of security boundary enforcement."
+  phylogeny: "Echoes Electron app vulnerabilities (VS Code, Discord), Docker daemon socket exposure, and Jupyter notebook localhost attacks. The pattern of 'local service assumes trusted caller' recurs across developer tooling generations. AI agents amplify the blast radius because they hold credentials and can take autonomous actions."
+participant_taxonomy:
+  their_name_for_it: "ClawJacked"
+  their_causal_model: "Cross-origin WebSocket exploitation of localhost trust assumptions enables zero-click full agent takeover"
+  attribution: architectural
+stakes:
+  domain: security
+  severity: critical
+  reversible: partially
+classification:
+  is_trust_glitch: true
+  confidence: 0.98
+quotes:
+  - "For a developer with typical OpenClaw integrations, this is equivalent to full workstation compromise, initiated from a browser tab."
+  - "The gateway's rate limiter completely exempts loopback connections — failed attempts are not counted, not throttled, and not logged."
+  - "A human-chosen password doesn't stand a chance."
+evidence:
+  verified: true
+  corroboration: "Oasis Security published full technical breakdown and proof-of-concept. OpenClaw team confirmed, classified as High severity, patched within 24 hours (v2026.2.25). CybersecurityNews independently reported."
+related_glitches:
+  - TXG-0011

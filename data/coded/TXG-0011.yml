@@ -1,0 +1,54 @@
+glitch_id: TXG-0011
+glitch_type: GB
+source: observed
+source_url: https://thehackernews.com/2026/02/researchers-find-341-malicious-clawhub.html
+interview_date: "2026-02-18"
+participant_id: koi-security
+system:
+  name: OpenClaw / ClawHub
+  version: "2026.01-02"
+  developer: OpenClaw / Peter Steinberger
+  modality: skill_marketplace
+  context: ai_agent_ecosystem
+event:
+  setting: "ClawHub marketplace — open skill repository for OpenClaw agents"
+  task: "Users installing third-party skills (plugins) to extend OpenClaw agent capabilities"
+  ai_behavior: "ClawHub accepts skill uploads from any GitHub account older than one week with no code review, security scanning, or behavioral analysis. Malicious skills execute within the agent's full privilege context — file system access, shell execution, stored credentials."
+  human_expectation: "Marketplace skills are safe or at least minimally vetted; installing a skill from the official marketplace implies a baseline of trust"
+  deviation: "1,184 malicious skills uploaded by 12 publisher accounts deployed info-stealers (Atomic Stealer/AMOS), reverse shells, and credential harvesters. Skills used typosquatting (clawhub, clawhubb, cllawhub), fake crypto tools, fake productivity integrations. Social engineering via 'prerequisites' sections tricked users into executing malicious commands. One account uploaded 677 malicious packages alone."
+affect:
+  primary_emotion: betrayal
+  secondary_emotions: [anger, distrust, helplessness]
+  intensity: severe
+  duration: weeks
+trust:
+  before: 7
+  after: 2
+  trajectory: collapse
+  recovery: uncertain
+  behavioral_change: "Community reporting feature added (3 reports = auto-hide). Users advised to audit installed skills, rotate credentials, deploy endpoint protection."
+ethology:
+  mechanism: "Supply-chain poisoning via open marketplace with minimal upload restrictions. Three attack vectors: (1) ClickFix-style downloaders — fake prerequisites trick users into running malware, (2) reverse-shell droppers embedded in functional skill code, (3) direct data-stealing scripts targeting ~/.clawdbot/.env and credential stores. Payloads included Atomic Stealer ($500-1000/month commodity stealer) exfiltrating browser creds, SSH keys, Telegram sessions, crypto wallets, keychains."
+  development: "Campaign began late January 2026 with initial account registrations. Mass uploads Jan 27-31. First disclosed by Koi Security Feb 1. Antiy CERT classified as TrojanOpenClaw PolySkill family by Feb 5. Despite removals, dozens of skills remained live with thousands of downloads. The campaign exploited the gap between OpenClaw's explosive growth and its marketplace governance maturity."
+  function: "Threat actors exploited the trust transitivity chain: users trust OpenClaw → OpenClaw trusts ClawHub → ClawHub trusts any GitHub account >1 week old → malicious actors create accounts. The marketplace's openness, designed to foster ecosystem growth, became the primary attack vector."
+  phylogeny: "Directly parallels npm malware campaigns (ua-parser-js, event-stream), PyPI typosquatting (ctx, phpass), VS Code extension malware, and Chrome Web Store poisoning. AI agent marketplaces inherit all vulnerabilities of package managers but with elevated privileges — agents have shell access, credential stores, and autonomous action capabilities."
+participant_taxonomy:
+  their_name_for_it: "ClawHavoc"
+  their_causal_model: "Open marketplace with minimal vetting + agent-level privileges = supply-chain poisoning at scale"
+  attribution: systemic
+stakes:
+  domain: security
+  severity: critical
+  reversible: partially
+classification:
+  is_trust_glitch: true
+  confidence: 0.97
+quotes:
+  - "You install what looks like a legitimate skill — maybe solana-wallet-tracker or youtube-summarize-pro. The skill's documentation looks professional. But there's a 'Prerequisites' section that says you need to install something first."
+  - "Because AI agents often operate with elevated privileges — file system access, shell execution, and stored credentials — these seemingly harmless plugins enabled full system compromise."
+  - "With persistent memory, attacks are no longer just point-in-time exploits. They become stateful, delayed-execution attacks."
+evidence:
+  verified: true
+  corroboration: "Multiple independent confirmations: Koi Security (initial disclosure, Feb 1), Antiy CERT (1,184 packages, 12 accounts, Feb 5), OpenSourceMalware (Paul McCarty), Palo Alto Networks (lethal trifecta analysis). C2 infrastructure at 91.92.242.30 confirmed."
+related_glitches:
+  - TXG-0010
